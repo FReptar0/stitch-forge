@@ -1,0 +1,44 @@
+{
+  "lastUpdated": "2026-04-09T00:00:00Z",
+  "models": [
+    { "id": "GEMINI_3_PRO", "quotaMonthly": 50, "notes": "Highest quality, complex screens" },
+    { "id": "GEMINI_2_5_FLASH", "quotaMonthly": 350, "notes": "Fast iteration" }
+  ],
+  "exportOptions": ["figma", "html_css_tailwind", "ai_studio", "antigravity"],
+  "mcpEndpoint": "https://stitch.googleapis.com/mcp",
+  "mcpTools": [
+    "list_projects",
+    "get_project",
+    "generate_screen_from_text",
+    "list_screens",
+    "get_screen"
+  ],
+  "proxyTools": [
+    "get_screen_code",
+    "get_screen_image",
+    "build_site"
+  ],
+  "authMethods": ["api_key", "gcloud_oauth"],
+  "designMdSections": 8,
+  "promptMaxChars": 5000,
+  "features": {
+    "infiniteCanvas": true,
+    "voiceCommands": true,
+    "interactivePrototypes": true,
+    "designDnaExtraction": true,
+    "urlDesignExtraction": true,
+    "screenStitching": true,
+    "designAgent": true
+  },
+  "knownLimitations": [
+    "No JS-heavy interactive pages — static UI only",
+    "Login-walled URLs fail design extraction",
+    "Long prompts (>5000 chars) cause component omissions",
+    "Multiple changes in one prompt causes full redesign instead of edit",
+    "No production code output — starting point only"
+  ],
+  "thirdPartyMcpServers": [
+    { "package": "@_davideast/stitch-mcp", "source": "npm", "type": "cli+proxy" },
+    { "package": "stitch-mcp", "author": "kargatharaakash", "source": "npm", "type": "oauth" }
+  ]
+}

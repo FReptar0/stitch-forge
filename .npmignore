@@ -1,0 +1,10 @@
+src/
+tests/
+.claude/
+.github/
+.env*
+.forgerc.json
+tsconfig.json
+vitest.config.ts
+CLAUDE.md
+coverage/

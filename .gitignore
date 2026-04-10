@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env
+.env.local
+.forgerc.json
+screens/
+coverage/
+*.tgz
+.DS_Store

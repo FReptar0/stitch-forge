@@ -1,0 +1,70 @@
+{
+  "name": "stitch-forge",
+  "version": "0.1.0",
+  "description": "Stitch Forge — CLI framework for automating web design with Google Stitch MCP",
+  "type": "module",
+  "bin": {
+    "forge": "./dist/index.js"
+  },
+  "scripts": {
+    "dev": "tsx src/index.ts tui",
+    "build": "tsc",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "lint": "eslint src/ tests/",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "ink": "^5.1.0",
+    "ink-text-input": "^6.0.0",
+    "ink-select-input": "^6.0.0",
+    "ink-spinner": "^5.0.0",
+    "ink-table": "^3.1.0",
+    "react": "^18.3.1",
+    "chalk": "^5.3.0",
+    "zod": "^3.23.0",
+    "dotenv": "^16.4.0",
+    "node-fetch": "^3.3.0",
+    "cheerio": "^1.0.0",
+    "conf": "^13.0.0",
+    "ora": "^8.1.0",
+    "boxen": "^8.0.0",
+    "figures": "^6.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "tsx": "^4.19.0",
+    "vitest": "^2.1.0",
+    "@types/react": "^18.3.0",
+    "@types/node": "^22.0.0",
+    "eslint": "^9.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "license": "MIT",
+  "author": "freptar0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/freptar0/stitch-forge.git"
+  },
+  "homepage": "https://github.com/freptar0/stitch-forge#readme",
+  "bugs": {
+    "url": "https://github.com/freptar0/stitch-forge/issues"
+  },
+  "keywords": [
+    "stitch",
+    "google-stitch",
+    "mcp",
+    "web-design",
+    "cli",
+    "design-system",
+    "ink"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ]
+}
