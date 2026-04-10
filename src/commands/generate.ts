@@ -9,6 +9,7 @@ import { StitchMcpClient } from '../mcp/client.js';
 interface GenerateOptions {
   model: string;
   project?: string;
+  preview?: boolean;
 }
 
 export async function runGenerate(description: string, opts: GenerateOptions): Promise<void> {
@@ -77,4 +78,10 @@ export async function runGenerate(description: string, opts: GenerateOptions): P
   log.success(`Screen saved: ${filename}`);
   log.quota(model, model === 'GEMINI_2_5_FLASH' ? status.flash.used : status.pro.used,
     model === 'GEMINI_2_5_FLASH' ? status.flash.limit : status.pro.limit);
+
+  if (opts.preview) {
+    const { openInBrowser } = await import('../utils/preview.js');
+    await openInBrowser(filename);
+    log.info('Preview opened in browser.');
+  }
 }

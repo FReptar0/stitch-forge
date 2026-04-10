@@ -14,6 +14,7 @@ interface DashboardProps {
 const QUICK_ACTIONS = [
   { label: '🖼️  Generate a new screen', value: 'generate' },
   { label: '🔄 Sync screens from Stitch', value: 'sync' },
+  { label: '👁️  Preview a screen', value: 'preview' },
   { label: '🏗️  Build site', value: 'build' },
 ];
 

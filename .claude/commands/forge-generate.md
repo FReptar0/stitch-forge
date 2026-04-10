@@ -45,7 +45,12 @@ Generate a screen in Google Stitch from a description.
 
 7. **After generation**, retrieve the screen code and save the HTML to `screens/[screen-name].html`.
 
-8. If generating multiple screens for a project, prefix subsequent prompts with:
+8. **Preview the screen** after saving:
+   - Call `mcp__stitch__get_screen_image` with the project ID and screen ID to get a base64 PNG.
+   - Display the image inline so the user can see the result immediately.
+   - Ask the user if they want to refine the screen or generate another one.
+
+9. If generating multiple screens for a project, prefix subsequent prompts with:
    "Following the same design language as the homepage..."
 
 Reference: See `docs/prompting-guide.md` for examples and common mistakes.

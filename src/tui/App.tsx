@@ -5,8 +5,10 @@ import { Dashboard } from './Dashboard.js';
 import { PromptBuilder } from './PromptBuilder.js';
 import { DesignEditor } from './DesignEditor.js';
 import { Spinner } from './components/Spinner.js';
+import { listScreenFiles, openInBrowser } from '../utils/preview.js';
+import { resolve, join } from 'node:path';
 
-type View = 'menu' | 'dashboard' | 'generate' | 'design' | 'research';
+type View = 'menu' | 'dashboard' | 'generate' | 'design' | 'research' | 'preview';
 
 interface MenuItem {
   label: string;
@@ -17,12 +19,14 @@ const MENU_ITEMS: MenuItem[] = [
   { label: '📊 Dashboard — Project overview & quota', value: 'dashboard' },
   { label: '🎨 Design — Create/edit DESIGN.md', value: 'design' },
   { label: '🖼️  Generate — Build a screen prompt', value: 'generate' },
+  { label: '👁️  Preview — Open screens in browser', value: 'preview' },
   { label: '🔬 Research — Check for updates', value: 'research' },
 ];
 
 function App() {
   const [view, setView] = useState<View>('menu');
   const [researchStatus, setResearchStatus] = useState<'idle' | 'running' | 'done'>('idle');
+  const [previewMessage, setPreviewMessage] = useState<string | null>(null);
   const { exit } = useApp();
 
   useInput((input, key) => {
@@ -68,6 +72,7 @@ function App() {
         <Dashboard
           onAction={(action) => {
             if (action === 'generate') setView('generate');
+            if (action === 'preview') setView('preview');
           }}
         />
       )}
@@ -78,6 +83,54 @@ function App() {
 
       {view === 'generate' && (
         <PromptBuilder onBack={goBack} />
+      )}
+
+      {view === 'preview' && (
+        <Box flexDirection="column">
+          <Text bold>Preview — Open Screens in Browser</Text>
+          <Box marginTop={1} flexDirection="column">
+            {(() => {
+              const screens = listScreenFiles();
+              if (screens.length === 0) {
+                return (
+                  <>
+                    <Text color="yellow">No screens found in screens/.</Text>
+                    <Text dimColor>Run <Text bold>forge generate</Text> to create screens first.</Text>
+                    <Box marginTop={1}>
+                      <Text dimColor>Press q to go back</Text>
+                    </Box>
+                  </>
+                );
+              }
+              return (
+                <>
+                  <Text dimColor>Select a screen to open in your browser:</Text>
+                  <Box marginTop={1}>
+                    <SelectInput
+                      items={screens.map(s => ({ label: s, value: s }))}
+                      onSelect={(item) => {
+                        const screenPath = resolve(join('screens', `${item.value}.html`));
+                        openInBrowser(screenPath).then(() => {
+                          setPreviewMessage(`Opened ${item.value} in browser.`);
+                        }).catch(() => {
+                          setPreviewMessage(`Could not open ${item.value}. Open manually: ${screenPath}`);
+                        });
+                      }}
+                    />
+                  </Box>
+                  {previewMessage && (
+                    <Box marginTop={1}>
+                      <Text color="green">{previewMessage}</Text>
+                    </Box>
+                  )}
+                  <Box marginTop={1}>
+                    <Text dimColor>Press q to go back</Text>
+                  </Box>
+                </>
+              );
+            })()}
+          </Box>
+        </Box>
       )}
 
       {view === 'research' && (
