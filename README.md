@@ -1,5 +1,7 @@
 # Stitch Forge
 
+[English](README.md) | [Español](README.es.md)
+
 <p align="center">
   <strong>Design websites with AI. Ship them with one command.</strong>
 </p>
