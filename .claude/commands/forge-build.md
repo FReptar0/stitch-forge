@@ -1,4 +1,6 @@
-Build a deployable site from Stitch screens.
+Build a deployable site from Stitch screens using a selected framework.
+
+Supported frameworks: `static` (default, plain HTML), `astro` (Stitch MCP build_site), `nextjs` (App Router with static export). Ask the user which framework to use before building. Check `.forgerc.json` for a saved `framework` preference.
 
 ## Instructions
 

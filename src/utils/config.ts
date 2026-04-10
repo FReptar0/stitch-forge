@@ -8,6 +8,7 @@ export interface StitchConfig {
   projectId?: string;
   projectName?: string;
   defaultModel: 'GEMINI_3_PRO' | 'GEMINI_2_5_FLASH';
+  framework?: 'static' | 'astro' | 'nextjs';
   screens: Array<{
     id: string;
     name: string;
