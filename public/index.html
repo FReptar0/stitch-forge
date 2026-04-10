@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "brand-bg": "#0F0F1A",
+                "brand-primary": "#6C5CE7",
+                "brand-accent": "#00CEC9",
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.5rem",
+                    "lg": "1rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk", "sans-serif"],
+                    "body": ["DM Sans", "sans-serif"],
+                    "label": ["DM Sans", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0F0F1A;
+            color: #ffffff;
+            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(108, 92, 231, 0.15) 0%, rgba(15, 15, 26, 0) 70%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .terminal-shadow {
+            box-shadow: 0 20px 50px -12px rgba(108, 92, 231, 0.3);
+        }
+    </style>
+</head>
+<body class="selection:bg-brand-primary/30">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-[#0F0F1A]/80 backdrop-blur-md border-b border-white/10 shadow-2xl shadow-purple-900/20">
+<nav class="flex justify-between items-center max-w-7xl mx-auto px-6 h-20">
+<div class="flex items-center gap-8">
+<a class="text-2xl font-black text-white bg-clip-text bg-gradient-to-r from-[#6C5CE7] to-[#00CEC9] font-['Space_Grotesk'] tracking-tight" href="/">Stitch Forge</a>
+<div class="hidden md:flex gap-6">
+<a class="text-[#00CEC9] border-b-2 border-[#00CEC9] pb-1 font-['Space_Grotesk'] font-bold tracking-tight transition-colors duration-300" href="#">Features</a>
+<a class="text-gray-400 font-medium font-['Space_Grotesk'] font-bold tracking-tight hover:text-white transition-colors duration-300" href="#">How it Works</a>
+<a class="text-gray-400 font-medium font-['Space_Grotesk'] font-bold tracking-tight hover:text-white transition-colors duration-300" href="#">Docs</a>
+<a class="text-gray-400 font-medium font-['Space_Grotesk'] font-bold tracking-tight hover:text-white transition-colors duration-300" href="#">GitHub</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-gray-400 hover:text-white active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+</button>
+<button class="bg-[#6C5CE7] text-white px-6 py-2.5 rounded-lg font-bold font-['Space_Grotesk'] active:scale-95 transition-all hover:shadow-[0_0_20px_rgba(108,92,231,0.5)]">
+                    Get Started
+                </button>
+</div>
+</nav>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[921px] flex flex-col items-center justify-center px-6 hero-gradient overflow-hidden">
+<div class="absolute inset-0 z-0 opacity-20" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDGWKYduTHz0NnutB2AamZdvu8VBpdgT1LO9QFzZSYxhiCooUYwR9gG0AsMrkpaRgFua4Nu3ETjKpME094NuP2GLMxR2gC0_TiC83wqSFyjxGY9m7rOryD2xVaAkOkS5C_mvFzaaNz7AXQpMxQt5WH2hXSzxauBb_bzYShk0ACa6U98B2fMkABt0leyG7MJsEkxK00Ql8aZOa5hHpiYkf8KQJHaMTwaXFdaMtoFY0HkM3Tp-ynxXckcWASXkUYW-_-z52wjFx3kX3E');"></div>
+<div class="max-w-4xl text-center z-10 mt-12">
+<h1 class="text-5xl md:text-7xl font-headline font-bold leading-tight tracking-tight mb-6">
+                    Design websites with <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#6C5CE7] to-[#a29bfe] drop-shadow-[0_0_15px_rgba(108,92,231,0.5)]">AI</span>. <br/> Ship them with one command.
+                </h1>
+<p class="text-lg md:text-xl text-gray-400 font-body max-w-2xl mx-auto mb-10 leading-relaxed">
+                    Stitch Forge turns Google Stitch into a full design-to-deploy pipeline. Generate screens, build design systems, and export to any framework — all from the terminal.
+                </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+<button class="w-full sm:w-auto px-8 py-4 bg-[#6C5CE7] text-white font-bold rounded-xl text-lg hover:bg-[#5b4bc4] transition-all transform active:scale-95 shadow-xl shadow-purple-900/20">
+                        Get Started
+                    </button>
+<button class="w-full sm:w-auto px-8 py-4 border border-[#00CEC9]/40 text-[#00CEC9] font-bold rounded-xl text-lg hover:bg-[#00CEC9]/5 transition-all transform active:scale-95">
+                        View on GitHub
+                    </button>
+</div>
+<!-- Terminal Mockup -->
+<div class="relative max-w-3xl mx-auto w-full group">
+<div class="absolute -inset-1 bg-gradient-to-r from-[#6C5CE7] to-[#00CEC9] rounded-xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+<div class="relative bg-[#05050A] rounded-xl border border-white/10 overflow-hidden terminal-shadow">
+<div class="flex items-center px-4 py-3 border-b border-white/5 bg-white/5">
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+<div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+</div>
+<div class="mx-auto text-xs text-gray-500 font-mono">zsh — stitch-forge</div>
+</div>
+<div class="p-6 text-left font-mono text-sm md:text-base leading-relaxed">
+<div class="flex gap-3 mb-2">
+<span class="text-gray-500">$</span>
+<span class="text-white">forge design <span class="text-[#00CEC9]">"Acme, SaaS, modern"</span></span>
+</div>
+<div class="text-gray-500 mb-4 ml-6 italic">Generating brand architecture... done.</div>
+<div class="flex gap-3 mb-2">
+<span class="text-gray-500">$</span>
+<span class="text-white">forge generate <span class="text-[#00CEC9]">"Landing page"</span></span>
+</div>
+<div class="text-gray-500 mb-4 ml-6 italic">Assembling components... 100% complete.</div>
+<div class="flex gap-3">
+<span class="text-gray-500">$</span>
+<span class="text-white">forge build <span class="text-brand-primary">--framework nextjs</span></span>
+</div>
+<div class="mt-4 animate-pulse text-[#00CEC9]">_</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="max-w-7xl mx-auto px-6 py-24">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-5xl font-headline font-bold mb-4">Powerful Features</h2>
+<p class="text-gray-400 font-body">Everything you need to automate your frontend workflow.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[240px]">
+<!-- Card 1: DESIGN.md -->
+<div class="md:col-span-1 md:row-span-1 glass-card p-8 rounded-2xl flex flex-col justify-between hover:border-brand-primary/50 transition-colors group">
+<span class="material-symbols-outlined text-4xl text-brand-primary mb-4" data-icon="palette">palette</span>
+<div>
+<h3 class="text-xl font-headline font-bold mb-2">DESIGN.md Generator</h3>
+<p class="text-gray-400 text-sm">Define your brand in markdown. Simple, version-controlled design systems.</p>
+</div>
+</div>
+<!-- Card 2: Prompt Builder -->
+<div class="md:col-span-1 md:row-span-1 glass-card p-8 rounded-2xl flex flex-col justify-between hover:border-brand-primary/50 transition-colors">
+<span class="material-symbols-outlined text-4xl text-brand-accent mb-4" data-icon="auto_fix_high">auto_fix_high</span>
+<div>
+<h3 class="text-xl font-headline font-bold mb-2">Prompt Builder</h3>
+<p class="text-gray-400 text-sm">Intelligent design prompts that understand context and hierarchy.</p>
+</div>
+</div>
+<!-- Card 3: Multi-Framework Export -->
+<div class="md:col-span-1 md:row-span-2 glass-card p-8 rounded-2xl flex flex-col group overflow-hidden">
+<div class="mb-auto">
+<span class="material-symbols-outlined text-4xl text-brand-primary mb-4" data-icon="layers">layers</span>
+<h3 class="text-xl font-headline font-bold mb-2">Multi-Framework Export</h3>
+<p class="text-gray-400 text-sm">One tool, any framework. Supports Astro, Next.js, and static HTML.</p>
+</div>
+<div class="mt-8 relative h-full flex items-center justify-center opacity-60 group-hover:opacity-100 transition-opacity">
+<div class="grid grid-cols-2 gap-4">
+<div class="px-4 py-2 bg-white/5 rounded border border-white/10 text-xs font-mono">Next.js</div>
+<div class="px-4 py-2 bg-white/5 rounded border border-white/10 text-xs font-mono">Astro</div>
+<div class="px-4 py-2 bg-white/5 rounded border border-white/10 text-xs font-mono">React</div>
+<div class="px-4 py-2 bg-white/5 rounded border border-white/10 text-xs font-mono">Vue</div>
+</div>
+</div>
+</div>
+<!-- Card 4: Live Preview -->
+<div class="md:col-span-2 md:row-span-1 glass-card p-8 rounded-2xl flex flex-col justify-between relative overflow-hidden">
+<div class="relative z-10 max-w-sm">
+<span class="material-symbols-outlined text-4xl text-[#00CEC9] mb-4" data-icon="visibility">visibility</span>
+<h3 class="text-xl font-headline font-bold mb-2">Live Preview</h3>
+<p class="text-gray-400 text-sm">See changes in real-time as the AI crafts your layout and styling.</p>
+</div>
+<div class="absolute right-0 bottom-0 w-1/2 h-full opacity-10 pointer-events-none">
+<img alt="Abstract glowing lines" class="w-full h-full object-cover" data-alt="abstract glowing lines and digital circuit patterns on dark background representing high-tech live preview data stream" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpyBwCxioFFtcV3nsfmedVSy-TP0W3AjqP_aOh-DHQo0dQQxXIU-1bOpnRHDjIOGqsCzXT0CYxa4zKNGpyCloSQIW05T9GzEJV_UR4AEV5Lceig62yqGVJ1mXVke6jO7vvEM6mWYYrjTKb_umUyn-JyLBMJWXJf-XMw-3CAve3TNcJbKeaKm2_YFJ4C0CUb60CDreO4r7nPYfaYW9qUO6lOHbelxws60CYd7nPy3dJb4RJ1UWrrYqNrchdIdRF7jaAJX-P42aCmzM"/>
+</div>
+</div>
+<!-- Card 5: Quota Tracker -->
+<div class="glass-card p-8 rounded-2xl flex flex-col justify-between hover:border-brand-primary/50 transition-colors">
+<span class="material-symbols-outlined text-4xl text-brand-primary mb-4" data-icon="speed">speed</span>
+<div>
+<h3 class="text-xl font-headline font-bold mb-2">Quota Tracker</h3>
+<p class="text-gray-400 text-sm">Monitor your AI usage and generation credits in real-time.</p>
+</div>
+</div>
+<!-- Card 6: Auto-Research -->
+<div class="glass-card p-8 rounded-2xl flex flex-col justify-between hover:border-brand-primary/50 transition-colors">
+<span class="material-symbols-outlined text-4xl text-brand-accent mb-4" data-icon="radar">radar</span>
+<div>
+<h3 class="text-xl font-headline font-bold mb-2">Auto-Research</h3>
+<p class="text-gray-400 text-sm">Analyze competition automatically to suggest best-in-class layouts.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- How it Works Section -->
+<section class="py-24 relative overflow-hidden">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-20">
+<h2 class="text-3xl md:text-5xl font-headline font-bold mb-4">Forge Your Future</h2>
+<p class="text-gray-400 font-body">From idea to production in minutes.</p>
+</div>
+<div class="relative grid grid-cols-1 md:grid-cols-3 gap-12">
+<!-- Connector line for desktop -->
+<div class="hidden md:block absolute top-24 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-brand-primary/30 to-transparent z-0"></div>
+<!-- Step 1 -->
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="w-16 h-16 bg-[#6C5CE7] rounded-full flex items-center justify-center text-2xl font-bold mb-8 shadow-[0_0_30px_rgba(108,92,231,0.4)]">1</div>
+<h3 class="text-2xl font-headline font-bold mb-4">Describe your brand</h3>
+<div class="w-full aspect-video bg-black/40 rounded-xl border border-white/10 p-4 font-mono text-left text-xs mb-4">
+<div class="text-brand-accent"># Describe your vision</div>
+<div class="text-white mt-1">"I want a modern fintech app..."</div>
+</div>
+<p class="text-gray-400">Initialize your project with a few words. Forge handles the architecture.</p>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="w-16 h-16 bg-[#00CEC9] rounded-full flex items-center justify-center text-2xl font-bold mb-8 shadow-[0_0_30px_rgba(0,206,201,0.4)] text-[#0F0F1A]">2</div>
+<h3 class="text-2xl font-headline font-bold mb-4">AI generates screens</h3>
+<div class="w-full aspect-video relative group mb-4">
+<img class="w-full h-full object-cover rounded-xl border border-white/10" data-alt="clean modern dashboard interface mockup with charts and data visualization elements in purple and cyan tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCl-hoEK79_t3OUaYMD6L_wTCf_1LbyxYjOmIHt4B9s39eBsS5ggEgSuAuko9R1hcWjiXjV_mFIvpqGnDWFUiDiTB35x14nDwCA4F-SjbftzLZxrHgFeHh4z5UQSyfP2YTsQSdih0V7XtHiJTOeLysbNE-sc7P5iGPYJhhaUrYVbKeBvIvCZgRWW4ycBytoy5TYChQs0G48Owur86pHUtjbV-9rMbTd-CVjcE5jYyonV3TUigss-kKf_0vx3ab1MX1BuUUWNVKbZU"/>
+<div class="absolute inset-0 bg-brand-primary/20 rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-4xl text-white">auto_awesome</span>
+</div>
+</div>
+<p class="text-gray-400">Our engine builds high-fidelity components based on your unique design system.</p>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-2xl font-bold mb-8 shadow-[0_0_30px_rgba(255,255,255,0.2)] text-[#0F0F1A]">3</div>
+<h3 class="text-2xl font-headline font-bold mb-4">Export &amp; deploy</h3>
+<div class="w-full aspect-video flex items-center justify-center gap-6 bg-white/5 rounded-xl border border-white/10 mb-4">
+<img alt="HTML5" class="w-10 h-10 grayscale hover:grayscale-0 transition-all" data-alt="HTML5 logo icon in full color" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdEN2UwQ_RI1QvPWLpbzaK0RjqnjmnatLjpAUA4WgNjmnlIBokFK06ZyErVl-M8uOaVI-W-4erMedupo85G8HqzEIt3GaWoZeuLQDHy96GU53ZdiKiIZZkhZVylS_zcJVmE4qgbtvBUTO2eXPLBT0vTDBVbJlUJNagYV0IYbtdDKT0cB_8lpzM-fDsdfQkRpDtvxU44-s_vXrheiBKQrrT2P-YX2XnEa0pFNIx_fkJ_s1ynoxYBkZkRWn3UgkZ3iuvDl0dsOMSU0k"/>
+<img alt="NextJS" class="w-10 h-10 grayscale hover:grayscale-0 transition-all bg-white rounded-full" data-alt="NextJS logo icon in black and white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlsTRqgni9xbJpaq9SaoOqoXES2IXtuXV2GMQ71CbRQDp0_f4Nw-PQmD_FiRIz12XEa-06rmQGmhjJgWjJnTqqQMU0bmYU7rw5ahYS3eImdJZnP-mAFh_LJfoyMPwdLM1SUSa8wryVxvDUVl1HAkxrIx34gAQelUg3yZPHHxnXEYoXsTPuShiSRhTDh_enPwURBz-_fWaTNco1hWaMHR7kCl-CISC9oqjGHXg5Tcm0bZpVJgcR-y90TdcgYlx3iD7xDDB6hO7LmCY"/>
+<img alt="React" class="w-10 h-10 grayscale hover:grayscale-0 transition-all" data-alt="React logo icon in cyan color" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQfHM2Y7F56ulAN0Ha1FIU444zSjkE4YV4y6Nd5J-51EhhckLaMgYhlrwxeu1o_-y0kEutIlbgyUwZla0-556vdrasn1H-M7wsWKThfAVMbKiOkYTCG7Mbt8gFHoxJ64kNf5hcQatJ7zUbonqiizI9KyvpWak8iF-EAhCGuKscrVdko2zoMef-RbDo-OnR1ZfeSYSMBtBhlnmCS3sMTsfiJt0639mUiDUBtx4EcOxSqLDg39uwYvaKzHqkLx8esa0hpg4_0UAHr9o"/>
+</div>
+<p class="text-gray-400">Ship production-ready code to your favorite hosting provider in seconds.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="max-w-7xl mx-auto px-6 py-24">
+<div class="bg-gradient-to-br from-[#6C5CE7]/20 to-[#00CEC9]/10 rounded-3xl p-12 text-center border border-white/10">
+<h2 class="text-4xl md:text-5xl font-headline font-bold mb-6">Ready to forge your next masterpiece?</h2>
+<p class="text-gray-400 mb-10 max-w-2xl mx-auto">Join the future of web design and deployment. Build better, faster, and smarter with Stitch Forge.</p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<button class="bg-[#6C5CE7] px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#5b4bc4] transition-all">Start Designing Now</button>
+<button class="bg-white/5 backdrop-blur-md px-8 py-4 rounded-xl font-bold text-lg border border-white/10 hover:bg-white/10 transition-all">Read the Docs</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0F0F1A] border-t border-white/5 w-full py-12">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-6">
+<div class="mb-8 md:mb-0">
+<div class="text-lg font-bold text-white mb-2">Stitch Forge</div>
+<p class="font-['DM_Sans'] text-sm text-gray-500 max-w-xs">© 2024 Stitch Forge. Built for the future of web design by Fernando Rodriguez Memije.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-gray-500 font-['DM_Sans'] text-sm hover:text-[#00CEC9] transition-colors opacity-100 hover:opacity-80" href="#">Documentation</a>
+<a class="text-gray-500 font-['DM_Sans'] text-sm hover:text-[#00CEC9] transition-colors opacity-100 hover:opacity-80" href="#">Changelog</a>
+<a class="text-gray-500 font-['DM_Sans'] text-sm hover:text-[#00CEC9] transition-colors opacity-100 hover:opacity-80" href="#">Community</a>
+<a class="text-gray-500 font-['DM_Sans'] text-sm hover:text-[#00CEC9] transition-colors opacity-100 hover:opacity-80" href="#">Privacy</a>
+</div>
+</div>
+</footer>
+</body></html>

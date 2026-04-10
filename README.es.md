@@ -24,10 +24,10 @@
 ---
 
 <p align="center">
-  <img src="docs/hero-banner.png" alt="Stitch Forge — Landing page generada con IA" width="800">
+  <img src="docs/hero-banner.jpg" alt="Stitch Forge — Landing page generada con IA" width="800">
 </p>
 
-<p align="center"><em>Esta landing page fue generada por Stitch Forge en un solo prompt. <a href="docs/stitch-forge-landing.html">Ver el HTML</a>.</em></p>
+<p align="center"><em>Esta landing page fue generada por Stitch Forge en un solo prompt. <a href="https://freptar0.github.io/stitch-forge/">Demo en vivo</a> · <a href="docs/full-landing.jpg">Screenshot completo</a></em></p>
 
 ---
 
@@ -84,6 +84,12 @@ npx tsx src/index.ts preview
 # 7. Compilar el sitio
 npx tsx src/index.ts build --framework static --auto
 ```
+
+### Demo CLI
+
+<p align="center">
+  <img src="docs/demo.gif" alt="Stitch Forge CLI Demo" width="800">
+</p>
 
 ## Como Funciona
 
