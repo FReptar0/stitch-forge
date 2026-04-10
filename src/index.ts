@@ -32,6 +32,7 @@ program
   .argument('<description...>', 'Screen description')
   .option('-m, --model <model>', 'Model to use (flash|pro)', 'flash')
   .option('-p, --project <id>', 'Stitch project ID')
+  .option('--preview', 'Open screen in browser after generating')
   .action(async (description: string[], opts) => {
     const { runGenerate } = await import('./commands/generate.js');
     await runGenerate(description.join(' '), opts);
@@ -46,6 +47,16 @@ program
   .action(async (opts) => {
     const { runBuild } = await import('./commands/build.js');
     await runBuild(opts);
+  });
+
+program
+  .command('preview')
+  .description('Preview generated screens in the browser')
+  .argument('[screen-name]', 'Screen to preview')
+  .option('-a, --all', 'Open all screens')
+  .action(async (screenName?: string, opts?: { all?: boolean }) => {
+    const { runPreview } = await import('./commands/preview.js');
+    await runPreview(screenName, opts || {});
   });
 
 program
