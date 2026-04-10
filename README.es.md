@@ -212,6 +212,7 @@ Creado por [Fernando Rodriguez Memije](https://fernandomemije.dev).
 
 <p align="center">
   <a href="https://fernandomemije.dev"><img src="https://img.shields.io/badge/fernandomemije.dev-000?style=for-the-badge&logo=safari&logoColor=white" alt="Sitio Web"></a>
+  <a href="https://www.linkedin.com/in/fernando-rm/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
   <a href="https://github.com/FReptar0"><img src="https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"></a>
   <a href="mailto:hi@fernandomemije.dev"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
 </p>
