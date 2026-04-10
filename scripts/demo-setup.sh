@@ -14,7 +14,7 @@ cat > .forgerc.json << 'CONF'
 CONF
 
 # Record
-vhs docs/demo.tape
+vhs scripts/demo.tape
 
 # Cleanup
 rm -f DESIGN.md .forgerc.json

@@ -1,7 +1,7 @@
 # Stitch Forge CLI Demo
-# Run: bash docs/demo-setup.sh
+# Run: bash scripts/demo-setup.sh
 
-Output docs/demo.gif
+Output .github/assets/demo.gif
 
 Set FontSize 14
 Set Width 1200
