@@ -47,6 +47,7 @@ export async function runInit(): Promise<void> {
     const config: StitchConfig = {
       apiKey: apiKey || undefined,
       defaultModel: 'GEMINI_2_5_FLASH',
+      framework: 'static',
       screens: [],
       quota: {
         flashUsed: 0,
@@ -57,6 +58,7 @@ export async function runInit(): Promise<void> {
     };
     saveConfig(config);
     log.success('Created .forgerc.json');
+    log.info('Default build framework: static (change with --framework or in .forgerc.json)');
   }
 
   // Step 3: Create .env if missing

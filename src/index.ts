@@ -42,6 +42,7 @@ program
   .description('Build a deployable site from Stitch screens')
   .option('-p, --project <id>', 'Stitch project ID')
   .option('--auto', 'Auto-map screen names to routes')
+  .option('-f, --framework <type>', 'Output framework: static, astro, nextjs')
   .action(async (opts) => {
     const { runBuild } = await import('./commands/build.js');
     await runBuild(opts);
