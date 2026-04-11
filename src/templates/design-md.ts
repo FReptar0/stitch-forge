@@ -9,13 +9,13 @@ export interface DesignBrief {
 
 // ─── Industry color psychology ──────────────────────────────────────
 // Each industry has its own color logic independent of aesthetic
-interface IndustryPalette {
+export interface IndustryPalette {
   primary: { name: string; hex: string };
   secondary: { name: string; hex: string };
   accent?: { name: string; hex: string };
 }
 
-const INDUSTRY_PALETTES: Record<string, IndustryPalette> = {
+export const INDUSTRY_PALETTES: Record<string, IndustryPalette> = {
   retail: { primary: { name: 'Retail Red', hex: '#DC0C0C' }, secondary: { name: 'Value Gold', hex: '#F5B800' } },
   grocery: { primary: { name: 'Fresh Green', hex: '#2D8F4E' }, secondary: { name: 'Harvest Orange', hex: '#E87B35' } },
   discount: { primary: { name: 'Bold Red', hex: '#CC1100' }, secondary: { name: 'Savings Yellow', hex: '#FFBF00' } },
@@ -32,7 +32,7 @@ const INDUSTRY_PALETTES: Record<string, IndustryPalette> = {
   nonprofit: { primary: { name: 'Purpose Teal', hex: '#0F766E' }, secondary: { name: 'Heart Coral', hex: '#F97066' } },
 };
 
-function matchIndustry(industry: string): IndustryPalette {
+export function matchIndustry(industry: string): IndustryPalette {
   const lower = industry.toLowerCase();
   for (const [key, palette] of Object.entries(INDUSTRY_PALETTES)) {
     if (lower.includes(key)) return palette;
@@ -55,7 +55,7 @@ function matchIndustry(industry: string): IndustryPalette {
 
 // ─── Aesthetic modifiers ────────────────────────────────────────────
 // Aesthetic controls the surface tones, typography, and component styling
-interface AestheticModifier {
+export interface AestheticModifier {
   surface: { name: string; hex: string };
   onSurface: { name: string; hex: string };
   muted: { name: string; hex: string };
@@ -67,7 +67,7 @@ interface AestheticModifier {
   shadowStyle: string;
 }
 
-const AESTHETIC_MODIFIERS: Record<string, AestheticModifier> = {
+export const AESTHETIC_MODIFIERS: Record<string, AestheticModifier> = {
   bold: {
     surface: { name: 'Soft White', hex: '#FAFAF8' },
     onSurface: { name: 'Charcoal', hex: '#2D2D2D' },
@@ -136,7 +136,7 @@ const AESTHETIC_MODIFIERS: Record<string, AestheticModifier> = {
   },
 };
 
-function matchAesthetic(aesthetic: string): AestheticModifier {
+export function matchAesthetic(aesthetic: string): AestheticModifier {
   const lower = aesthetic.toLowerCase();
   if (/bold|industrial|strong|powerful|edgy|striking/.test(lower)) return AESTHETIC_MODIFIERS.bold;
   if (/elegant|premium|luxury|corporate|formal|sophisticated/.test(lower)) return AESTHETIC_MODIFIERS.elegant;
@@ -149,7 +149,7 @@ function matchAesthetic(aesthetic: string): AestheticModifier {
 
 // ─── Audience-aware imagery ─────────────────────────────────────────
 
-function generateImageryGuidelines(industry: string, audience: string): string {
+export function generateImageryGuidelines(industry: string, audience: string): string {
   const lower = `${industry} ${audience}`.toLowerCase();
 
   if (/famili|familia|hogar|casa|home|parent|madre|padre/.test(lower))
@@ -170,7 +170,7 @@ function generateImageryGuidelines(industry: string, audience: string): string {
 
 // ─── Industry-specific Do's and Don'ts ──────────────────────────────
 
-function generateDosAndDonts(industry: string, audience: string): { dos: string[]; donts: string[] } {
+export function generateDosAndDonts(industry: string, audience: string): { dos: string[]; donts: string[] } {
   const baseDos = [
     'Use consistent spacing from the scale',
     'Maintain high contrast (4.5:1 minimum) for text readability',
