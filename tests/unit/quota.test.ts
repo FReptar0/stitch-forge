@@ -19,7 +19,7 @@ describe('quota tracking', () => {
     const { getQuotaStatus } = await import('../../src/utils/quota.js');
     const status = getQuotaStatus();
     expect(status.flash.remaining).toBe(350);
-    expect(status.pro.remaining).toBe(50);
+    expect(status.pro.remaining).toBe(200);
   });
 
   it('canGenerate returns true when quota available', async () => {

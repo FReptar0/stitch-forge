@@ -15,8 +15,12 @@ vi.stubGlobal('fetch', mockFetch);
 function mockResponse(data: unknown) {
   return {
     ok: true,
-    json: async () => ({ result: data }),
-    text: async () => JSON.stringify({ result: data }),
+    json: async () => ({
+      jsonrpc: '2.0',
+      id: 1,
+      result: { content: [{ type: 'text', text: JSON.stringify(data) }] },
+    }),
+    text: async () => JSON.stringify(data),
   };
 }
 
@@ -35,10 +39,12 @@ describe('StitchMcpClient', () => {
 
     expect(projects).toHaveLength(2);
     expect(projects[0].name).toBe('Acme Website');
+    expect(projects[0].id).toBe('proj-001');
     expect(mockFetch).toHaveBeenCalledOnce();
   });
 
-  it('generates a screen', async () => {
+  it('generates a screen and extracts from outputComponents', async () => {
+    // generateScreen now parses outputComponents directly from the response
     mockFetch.mockResolvedValueOnce(mockResponse(fixtures.generateScreen));
 
     const { StitchMcpClient } = await import('../../src/mcp/client.js');
@@ -47,6 +53,9 @@ describe('StitchMcpClient', () => {
 
     expect(result.screenId).toBe('scr-new-001');
     expect(result.name).toBe('pricing');
+    expect(result.htmlCodeUrl).toBe('https://example.com/html/scr-new-001');
+    expect(result.screenshotUrl).toBe('https://example.com/screenshot/scr-new-001');
+    expect(mockFetch).toHaveBeenCalledOnce(); // Only 1 call, no listScreens needed
   });
 
   it('retrieves screen HTML', async () => {

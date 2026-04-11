@@ -1,17 +1,42 @@
 {
-  "listProjects": [
-    { "id": "proj-001", "name": "Acme Website", "createdAt": "2026-04-01T00:00:00Z", "screenCount": 5 },
-    { "id": "proj-002", "name": "Flower Shop", "createdAt": "2026-03-15T00:00:00Z", "screenCount": 3 }
-  ],
-  "listScreens": [
-    { "id": "scr-001", "name": "homepage", "prompt": "A modern clean landing page...", "createdAt": "2026-04-01T12:00:00Z" },
-    { "id": "scr-002", "name": "about", "prompt": "An about page following the same design...", "createdAt": "2026-04-01T13:00:00Z" },
-    { "id": "scr-003", "name": "services", "prompt": "A services grid page...", "createdAt": "2026-04-01T14:00:00Z" }
-  ],
+  "listProjects": {
+    "projects": [
+      { "name": "projects/proj-001", "title": "Acme Website", "createTime": "2026-04-01T00:00:00Z", "screenInstances": [{}, {}, {}, {}, {}] },
+      { "name": "projects/proj-002", "title": "Flower Shop", "createTime": "2026-03-15T00:00:00Z", "screenInstances": [{}, {}, {}] }
+    ]
+  },
+  "listScreens": {
+    "screens": [
+      { "name": "projects/proj-001/screens/scr-001", "title": "homepage", "prompt": "A modern clean landing page...", "createTime": "2026-04-01T12:00:00Z" },
+      { "name": "projects/proj-001/screens/scr-002", "title": "about", "prompt": "An about page following the same design...", "createTime": "2026-04-01T13:00:00Z" },
+      { "name": "projects/proj-001/screens/scr-003", "title": "services", "prompt": "A services grid page...", "createTime": "2026-04-01T14:00:00Z" }
+    ]
+  },
   "generateScreen": {
-    "screenId": "scr-new-001",
     "projectId": "proj-001",
-    "name": "pricing"
+    "sessionId": "session-001",
+    "outputComponents": [
+      {
+        "design": {
+          "screens": [
+            {
+              "id": "scr-new-001",
+              "name": "projects/proj-001/screens/scr-new-001",
+              "title": "pricing",
+              "htmlCode": {
+                "name": "projects/proj-001/files/html-001",
+                "downloadUrl": "https://example.com/html/scr-new-001",
+                "mimeType": "text/html"
+              },
+              "screenshot": {
+                "name": "projects/proj-001/files/screenshot-001",
+                "downloadUrl": "https://example.com/screenshot/scr-new-001"
+              }
+            }
+          ]
+        }
+      }
+    ]
   },
   "getScreenCode": "<html><head><title>Pricing</title></head><body><h1>Plans</h1></body></html>",
   "getScreenImage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==",

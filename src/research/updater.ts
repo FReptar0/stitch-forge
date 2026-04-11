@@ -15,15 +15,27 @@ export function updateKnownState(changes: Change[]): void {
   const state = getKnownState();
   state.lastUpdated = new Date().toISOString();
 
-  // Apply detected changes as notes
   if (!Array.isArray(state.detectedChanges)) {
     state.detectedChanges = [];
   }
+
+  const existing = state.detectedChanges as Array<Record<string, unknown> & { category?: string; description?: string }>;
+
   for (const change of changes) {
-    (state.detectedChanges as unknown[]).push({
-      date: new Date().toISOString(),
-      ...change,
-    });
+    const isDuplicate = existing.some(
+      e => e.category === change.category && e.description === change.description
+    );
+    if (!isDuplicate) {
+      existing.push({
+        date: new Date().toISOString(),
+        ...change,
+      });
+    }
+  }
+
+  // Keep only the last 50 changes
+  if (existing.length > 50) {
+    state.detectedChanges = existing.slice(-50);
   }
 
   writeFileSync(KNOWN_STATE_PATH, JSON.stringify(state, null, 2) + '\n');

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "tsx src/index.ts tui",
-    "build": "tsc",
+    "build": "tsc && cp src/research/known-state.json dist/research/known-state.json",
     "test": "vitest",
     "test:run": "vitest run",
     "lint": "eslint src/ tests/",

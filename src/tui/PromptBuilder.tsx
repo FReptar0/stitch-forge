@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Box, Text, useInput } from 'ink';
 import SelectInput from 'ink-select-input';
 import TextInput from 'ink-text-input';
+import { existsSync, writeFileSync, mkdirSync } from 'node:fs';
 import { buildInitialPrompt, type ScreenSpec } from '../templates/prompts.js';
 import { validatePrompt } from '../utils/validators.js';
+import { StitchMcpClient } from '../mcp/client.js';
 import { StatusBar } from './components/StatusBar.js';
 import { Spinner } from './components/Spinner.js';
 
@@ -20,7 +22,7 @@ const PAGE_TYPES = [
 
 const MODEL_OPTIONS = [
   { label: 'Flash — fast iteration (350/month)', value: 'flash' },
-  { label: 'Pro — higher quality (50/month)', value: 'pro' },
+  { label: 'Pro — higher quality (200/month)', value: 'pro' },
 ];
 
 interface PromptBuilderProps {
@@ -53,10 +55,7 @@ export function PromptBuilder({ onBack }: PromptBuilderProps) {
       hasDesignMd: false,
     };
 
-    try {
-      const { existsSync } = require('node:fs');
-      spec.hasDesignMd = existsSync('DESIGN.md');
-    } catch { /* ignore */ }
+    spec.hasDesignMd = existsSync('DESIGN.md');
 
     return buildInitialPrompt(spec);
   };
@@ -72,10 +71,40 @@ export function PromptBuilder({ onBack }: PromptBuilderProps) {
     setStep('review');
   };
 
-  const handleSend = () => {
+  const handleSend = (item: { value: string }) => {
+    const model = item.value as 'flash' | 'pro';
     setStep('sending');
-    setResult(`Prompt ready! Use "forge generate" with your prompt to send to Stitch.`);
-    setTimeout(() => setStep('done'), 1500);
+
+    const modelId = model === 'pro' ? 'GEMINI_3_PRO' : 'GEMINI_2_5_FLASH';
+
+    (async () => {
+      try {
+        const client = new StitchMcpClient();
+        const projects = await client.listProjects();
+
+        if (projects.length === 0) {
+          setResult('No Stitch projects found. Create one at stitch.withgoogle.com first.');
+          setStep('done');
+          return;
+        }
+
+        const projectId = projects[0].id;
+        const prompt = buildPrompt();
+
+        const generated = await client.generateScreen(projectId, prompt, modelId);
+        const html = await client.getScreenCode(projectId, generated.screenId);
+
+        if (!existsSync('screens')) mkdirSync('screens');
+        const filename = `screens/${generated.name || generated.screenId}.html`;
+        writeFileSync(filename, html);
+
+        setResult(`Screen saved: ${filename}`);
+        setStep('done');
+      } catch (err) {
+        setResult(`Generation failed: ${err instanceof Error ? err.message : 'Unknown error'}`);
+        setStep('done');
+      }
+    })();
   };
 
   return (

@@ -1,3 +1,11 @@
+---
+name: forge-sync
+description: >
+  Sync local files with a Google Stitch project. Downloads all screens
+  and updates local config. Use when the user has made changes in
+  Stitch's web UI and wants to pull them into their local project.
+---
+
 Sync local files with a Google Stitch project.
 
 ## Instructions
@@ -33,3 +41,5 @@ Sync local files with a Google Stitch project.
    - Any screens that failed to download
 
 8. **Check for design system** using `mcp__stitch__list_design_systems`. If one exists and no local DESIGN.md is found, suggest running `/forge-design` to create one.
+
+9. **Next step**: "Run `/forge-preview` to see synced screens."

@@ -30,7 +30,13 @@ export async function runBuild(opts: BuildOptions): Promise<void> {
     process.exit(1);
   }
 
-  const client = new StitchMcpClient();
+  let client: StitchMcpClient;
+  try {
+    client = new StitchMcpClient();
+  } catch (err) {
+    log.error(err instanceof Error ? err.message : 'Failed to initialize Stitch client.');
+    process.exit(1);
+  }
 
   log.step(1, 3, 'Fetching screens...');
   const screens = await client.listScreens(projectId);

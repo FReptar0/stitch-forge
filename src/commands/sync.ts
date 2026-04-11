@@ -6,7 +6,13 @@ import { StitchMcpClient } from '../mcp/client.js';
 export async function runSync(projectId?: string): Promise<void> {
   const config = getConfig();
   const id = projectId || config.projectId;
-  const client = new StitchMcpClient();
+  let client: StitchMcpClient;
+  try {
+    client = new StitchMcpClient();
+  } catch (err) {
+    log.error(err instanceof Error ? err.message : 'Failed to initialize Stitch client.');
+    process.exit(1);
+  }
 
   if (!id) {
     log.info('No project ID. Listing available projects...');

@@ -1,3 +1,11 @@
+---
+name: forge-build
+description: >
+  Build a deployable site from generated Stitch screens. Use when the user
+  wants to export, ship, publish, or turn their screens into a real website.
+  Maps screens to routes and generates a static HTML, Astro, or Next.js project.
+---
+
 Build a deployable site from Stitch screens using a selected framework.
 
 Supported frameworks: `static` (default, plain HTML), `astro` (Stitch MCP build_site), `nextjs` (App Router with static export). Ask the user which framework to use before building. Check `.forgerc.json` for a saved `framework` preference.
@@ -32,6 +40,7 @@ Supported frameworks: `static` (default, plain HTML), `astro` (Stitch MCP build_
    - "Your site screens have been saved to the `screens/` folder"
    - "Each file contains the complete HTML/CSS for that page"
    - "You can open any `.html` file in your browser to preview it"
-   - If the user wants a full Astro site, explain the route structure
 
-9. Do NOT output raw CLI commands like `cd dist && npm install`. Instead, explain in plain language what the user can do next.
+9. **Next step**: "Open the built site in your browser to review."
+
+Do NOT output raw CLI commands like `cd dist && npm install`. Explain in plain language.

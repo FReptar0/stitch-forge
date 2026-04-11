@@ -6,6 +6,9 @@ import { PromptBuilder } from './PromptBuilder.js';
 import { DesignEditor } from './DesignEditor.js';
 import { Spinner } from './components/Spinner.js';
 import { listScreenFiles, openInBrowser } from '../utils/preview.js';
+import { crawlSources } from '../research/crawler.js';
+import { diffAgainstKnownState } from '../research/differ.js';
+import { getKnownState } from '../research/updater.js';
 import { resolve, join } from 'node:path';
 
 type View = 'menu' | 'dashboard' | 'generate' | 'design' | 'research' | 'preview';
@@ -26,6 +29,8 @@ const MENU_ITEMS: MenuItem[] = [
 function App() {
   const [view, setView] = useState<View>('menu');
   const [researchStatus, setResearchStatus] = useState<'idle' | 'running' | 'done'>('idle');
+  const [researchResults, setResearchResults] = useState<string | null>(null);
+  const [researchError, setResearchError] = useState<string | null>(null);
   const [previewMessage, setPreviewMessage] = useState<string | null>(null);
   const { exit } = useApp();
 
@@ -147,7 +152,24 @@ function App() {
                     ]}
                     onSelect={() => {
                       setResearchStatus('running');
-                      setTimeout(() => setResearchStatus('done'), 2000);
+                      setResearchError(null);
+                      crawlSources()
+                        .then(crawlResults => {
+                          const knownState = getKnownState();
+                          const diff = diffAgainstKnownState(crawlResults, knownState);
+                          if (diff.hasChanges) {
+                            setResearchResults(
+                              diff.changes.map(c => `[${c.severity}] ${c.category}: ${c.description}`).join('\n')
+                            );
+                          } else {
+                            setResearchResults('No changes detected. Knowledge base is current.');
+                          }
+                          setResearchStatus('done');
+                        })
+                        .catch(err => {
+                          setResearchError(err instanceof Error ? err.message : 'Unknown error');
+                          setResearchStatus('done');
+                        });
                     }}
                   />
                 </Box>
@@ -158,13 +180,18 @@ function App() {
             )}
             {researchStatus === 'done' && (
               <>
-                <Text color="green">Research complete!</Text>
-                <Box marginTop={1}>
-                  <Text dimColor>
-                    Run <Text bold>forge research</Text> from the CLI for a full update,{'\n'}
-                    or use <Text bold>/forge-research</Text> in Claude Code for web-powered research.
-                  </Text>
-                </Box>
+                {researchError ? (
+                  <Text color="red">Research failed: {researchError}</Text>
+                ) : (
+                  <>
+                    <Text color="green">Research complete!</Text>
+                    {researchResults && (
+                      <Box marginTop={1} flexDirection="column">
+                        <Text>{researchResults}</Text>
+                      </Box>
+                    )}
+                  </>
+                )}
                 <Box marginTop={1}>
                   <Text dimColor>Press q to go back</Text>
                 </Box>

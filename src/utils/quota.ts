@@ -7,9 +7,11 @@ export interface QuotaStatus {
   warning?: string;
 }
 
-const LIMITS = {
+const LIMITS: Record<string, number> = {
   GEMINI_2_5_FLASH: 350,
-  GEMINI_3_PRO: 50,
+  GEMINI_3_PRO: 200,
+  GEMINI_3_FLASH: 350,
+  GEMINI_3_1_PRO: 200,
 };
 
 export function getQuotaStatus(): QuotaStatus {
@@ -23,7 +25,7 @@ export function getQuotaStatus(): QuotaStatus {
     resetDate: config.quota.resetDate,
   };
 
-  if (flashRemaining <= 10 || proRemaining <= 3) {
+  if (flashRemaining <= 10 || proRemaining <= 10) {
     status.warning = `Low quota: Flash ${flashRemaining} remaining, Pro ${proRemaining} remaining. Resets ${config.quota.resetDate}.`;
   }
 

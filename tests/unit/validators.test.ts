@@ -31,4 +31,22 @@ describe('validatePrompt', () => {
     const result = validatePrompt('On the hero section, change the CTA button color to #FF5733');
     expect(result.valid).toBe(true);
   });
+
+  it('detects fuzzy vague prompts', () => {
+    expect(validatePrompt('just make it better').valid).toBe(false);
+    expect(validatePrompt('improve this').valid).toBe(false);
+    expect(validatePrompt('it looks bad').valid).toBe(false);
+  });
+
+  it('detects multiple page types listed', () => {
+    expect(validatePrompt('Create a landing page, pricing page, and about page').valid).toBe(false);
+  });
+
+  it('detects numbered page requests', () => {
+    expect(validatePrompt('Create three pages for my startup').valid).toBe(false);
+  });
+
+  it('allows legitimate prompts with page-like words', () => {
+    expect(validatePrompt('A pricing page with three pricing tiers and annual toggle').valid).toBe(true);
+  });
 });
