@@ -44,7 +44,15 @@ describe('StitchMcpClient', () => {
   });
 
   it('generates a screen', async () => {
-    mockFetch.mockResolvedValueOnce(mockResponse(fixtures.generateScreen));
+    // generateScreen now calls: listScreens (before), generate, listScreens (after)
+    const screensBefore = { screens: [] };
+    const screensAfter = { screens: [
+      { name: 'projects/proj-001/screens/scr-new-001', title: 'pricing', createTime: '' },
+    ] };
+    mockFetch
+      .mockResolvedValueOnce(mockResponse(screensBefore))
+      .mockResolvedValueOnce(mockResponse(fixtures.generateScreen))
+      .mockResolvedValueOnce(mockResponse(screensAfter));
 
     const { StitchMcpClient } = await import('../../src/mcp/client.js');
     const client = new StitchMcpClient('test-key');

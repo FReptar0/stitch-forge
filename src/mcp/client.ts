@@ -190,21 +190,38 @@ export class StitchMcpClient {
   }
 
   async generateScreen(projectId: string, prompt: string, modelId?: string): Promise<GenerateScreenResult> {
-    // generate_screen_from_text expects projectId WITHOUT 'projects/' prefix
-    const projId = this.extractId(this.toResourceName(projectId, 'projects'));
-    // Map internal model names to API model IDs
+    const projResource = this.toResourceName(projectId, 'projects');
+    const projId = this.extractId(projResource);
     const apiModel = this.mapModelId(modelId || 'GEMINI_2_5_FLASH');
-    const raw = await this.callTool<Record<string, unknown>>('generate_screen_from_text', {
+
+    // Snapshot current screens to detect the new one after generation
+    let screensBefore: StitchScreen[] = [];
+    try {
+      screensBefore = await this.listScreens(projId);
+    } catch { /* first generation may have no screens */ }
+
+    await this.callTool<Record<string, unknown>>('generate_screen_from_text', {
       projectId: projId,
       prompt,
       ...(apiModel ? { modelId: apiModel } : {}),
     });
-    // Response may contain the screen object or a wrapper
-    const screen = (raw.screen || raw) as Record<string, unknown>;
+
+    // The API returns { projectId, sessionId, outputComponents } but no screen ID.
+    // List screens again and find the new one by comparing with the snapshot.
+    const screensAfter = await this.listScreens(projId);
+    const beforeIds = new Set(screensBefore.map(s => s.id));
+    const newScreen = screensAfter.find(s => !beforeIds.has(s.id));
+
+    if (newScreen) {
+      return { screenId: newScreen.id, projectId: projId, name: newScreen.name };
+    }
+
+    // Fallback: use the last screen in the list
+    const last = screensAfter[screensAfter.length - 1];
     return {
-      screenId: this.extractId((screen.name as string) || ''),
-      projectId,
-      name: (screen.title as string) || (screen.name as string) || '',
+      screenId: last?.id || '',
+      projectId: projId,
+      name: last?.name || 'generated-screen',
     };
   }
 
