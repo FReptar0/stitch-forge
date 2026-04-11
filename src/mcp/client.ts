@@ -223,29 +223,46 @@ export class StitchMcpClient {
 
   /** Extract screen data directly from generate_screen_from_text response */
   private extractScreenFromResponse(raw: Record<string, unknown>): Omit<GenerateScreenResult, 'projectId'> | null {
+    // Primary path: outputComponents[N].design.screens[0]
     try {
       const components = raw.outputComponents as Array<Record<string, unknown>> | undefined;
-      if (!components?.length) return null;
+      if (components?.length) {
+        for (const comp of components) {
+          const design = comp.design as Record<string, unknown> | undefined;
+          const screens = design?.screens as Array<Record<string, unknown>> | undefined;
+          if (screens?.length) {
+            const screen = screens[0];
+            const htmlCode = screen.htmlCode as Record<string, unknown> | undefined;
+            const screenshot = screen.screenshot as Record<string, unknown> | undefined;
+            if (screen.id || screen.name) {
+              return {
+                screenId: (screen.id as string) || this.extractId((screen.name as string) || ''),
+                name: (screen.title as string) || (screen.name as string) || '',
+                htmlCodeUrl: (htmlCode?.downloadUrl as string) || undefined,
+                screenshotUrl: (screenshot?.downloadUrl as string) || undefined,
+              };
+            }
+          }
+        }
+      }
+    } catch { /* fall through to deep search */ }
 
-      const design = components[0].design as Record<string, unknown> | undefined;
-      if (!design) return null;
+    // Deep search: find any object with htmlCode.downloadUrl anywhere in the response
+    try {
+      const json = JSON.stringify(raw);
+      const htmlUrlMatch = json.match(/"downloadUrl"\s*:\s*"(https:\/\/contribution[^"]+)"/);
+      const idMatch = json.match(/"id"\s*:\s*"([a-f0-9]{32})"/);
+      const titleMatch = json.match(/"title"\s*:\s*"([^"]+)"/);
+      if (htmlUrlMatch && idMatch) {
+        return {
+          screenId: idMatch[1],
+          name: titleMatch?.[1] || 'generated-screen',
+          htmlCodeUrl: htmlUrlMatch[1],
+        };
+      }
+    } catch { /* give up */ }
 
-      const screens = design.screens as Array<Record<string, unknown>> | undefined;
-      if (!screens?.length) return null;
-
-      const screen = screens[0];
-      const htmlCode = screen.htmlCode as Record<string, unknown> | undefined;
-      const screenshot = screen.screenshot as Record<string, unknown> | undefined;
-
-      return {
-        screenId: (screen.id as string) || this.extractId((screen.name as string) || ''),
-        name: (screen.title as string) || (screen.name as string) || '',
-        htmlCodeUrl: (htmlCode?.downloadUrl as string) || undefined,
-        screenshotUrl: (screenshot?.downloadUrl as string) || undefined,
-      };
-    } catch {
-      return null;
-    }
+    return null;
   }
 
   async getScreenCode(projectId: string, screenId: string, htmlCodeUrl?: string): Promise<string> {
