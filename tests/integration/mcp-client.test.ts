@@ -43,16 +43,9 @@ describe('StitchMcpClient', () => {
     expect(mockFetch).toHaveBeenCalledOnce();
   });
 
-  it('generates a screen', async () => {
-    // generateScreen now calls: listScreens (before), generate, listScreens (after)
-    const screensBefore = { screens: [] };
-    const screensAfter = { screens: [
-      { name: 'projects/proj-001/screens/scr-new-001', title: 'pricing', createTime: '' },
-    ] };
-    mockFetch
-      .mockResolvedValueOnce(mockResponse(screensBefore))
-      .mockResolvedValueOnce(mockResponse(fixtures.generateScreen))
-      .mockResolvedValueOnce(mockResponse(screensAfter));
+  it('generates a screen and extracts from outputComponents', async () => {
+    // generateScreen now parses outputComponents directly from the response
+    mockFetch.mockResolvedValueOnce(mockResponse(fixtures.generateScreen));
 
     const { StitchMcpClient } = await import('../../src/mcp/client.js');
     const client = new StitchMcpClient('test-key');
@@ -60,6 +53,9 @@ describe('StitchMcpClient', () => {
 
     expect(result.screenId).toBe('scr-new-001');
     expect(result.name).toBe('pricing');
+    expect(result.htmlCodeUrl).toBe('https://example.com/html/scr-new-001');
+    expect(result.screenshotUrl).toBe('https://example.com/screenshot/scr-new-001');
+    expect(mockFetch).toHaveBeenCalledOnce(); // Only 1 call, no listScreens needed
   });
 
   it('retrieves screen HTML', async () => {

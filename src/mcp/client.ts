@@ -28,6 +28,8 @@ export interface GenerateScreenResult {
   screenId: string;
   projectId: string;
   name: string;
+  htmlCodeUrl?: string;
+  screenshotUrl?: string;
 }
 
 export interface BuildSiteRoute {
@@ -194,38 +196,65 @@ export class StitchMcpClient {
     const projId = this.extractId(projResource);
     const apiModel = this.mapModelId(modelId || 'GEMINI_2_5_FLASH');
 
-    // Snapshot current screens to detect the new one after generation
-    let screensBefore: StitchScreen[] = [];
-    try {
-      screensBefore = await this.listScreens(projId);
-    } catch { /* first generation may have no screens */ }
-
-    await this.callTool<Record<string, unknown>>('generate_screen_from_text', {
+    const raw = await this.callTool<Record<string, unknown>>('generate_screen_from_text', {
       projectId: projId,
       prompt,
       ...(apiModel ? { modelId: apiModel } : {}),
     });
 
-    // The API returns { projectId, sessionId, outputComponents } but no screen ID.
-    // List screens again and find the new one by comparing with the snapshot.
-    const screensAfter = await this.listScreens(projId);
-    const beforeIds = new Set(screensBefore.map(s => s.id));
-    const newScreen = screensAfter.find(s => !beforeIds.has(s.id));
+    // The API returns { projectId, sessionId, outputComponents }.
+    // The screen data is in outputComponents[0].design.screens[0] with:
+    //   id, name, title, htmlCode.downloadUrl, screenshot.downloadUrl
+    const screen = this.extractScreenFromResponse(raw);
+    if (screen) return { ...screen, projectId: projId };
 
-    if (newScreen) {
-      return { screenId: newScreen.id, projectId: projId, name: newScreen.name };
+    // Fallback: list screens and find the latest (may require delay)
+    for (let attempt = 0; attempt < 3; attempt++) {
+      await new Promise(r => setTimeout(r, (attempt + 1) * 2000));
+      const screens = await this.listScreens(projId);
+      if (screens.length > 0) {
+        const last = screens[screens.length - 1];
+        return { screenId: last.id, projectId: projId, name: last.name };
+      }
     }
 
-    // Fallback: use the last screen in the list
-    const last = screensAfter[screensAfter.length - 1];
-    return {
-      screenId: last?.id || '',
-      projectId: projId,
-      name: last?.name || 'generated-screen',
-    };
+    throw new Error('Screen was generated but could not be retrieved. Try running `forge sync` to pull screens.');
   }
 
-  async getScreenCode(projectId: string, screenId: string): Promise<string> {
+  /** Extract screen data directly from generate_screen_from_text response */
+  private extractScreenFromResponse(raw: Record<string, unknown>): Omit<GenerateScreenResult, 'projectId'> | null {
+    try {
+      const components = raw.outputComponents as Array<Record<string, unknown>> | undefined;
+      if (!components?.length) return null;
+
+      const design = components[0].design as Record<string, unknown> | undefined;
+      if (!design) return null;
+
+      const screens = design.screens as Array<Record<string, unknown>> | undefined;
+      if (!screens?.length) return null;
+
+      const screen = screens[0];
+      const htmlCode = screen.htmlCode as Record<string, unknown> | undefined;
+      const screenshot = screen.screenshot as Record<string, unknown> | undefined;
+
+      return {
+        screenId: (screen.id as string) || this.extractId((screen.name as string) || ''),
+        name: (screen.title as string) || (screen.name as string) || '',
+        htmlCodeUrl: (htmlCode?.downloadUrl as string) || undefined,
+        screenshotUrl: (screenshot?.downloadUrl as string) || undefined,
+      };
+    } catch {
+      return null;
+    }
+  }
+
+  async getScreenCode(projectId: string, screenId: string, htmlCodeUrl?: string): Promise<string> {
+    // Fast path: if we have a direct download URL from generation response, use it
+    if (htmlCodeUrl) {
+      const res = await fetch(htmlCodeUrl, { signal: AbortSignal.timeout(30000) });
+      if (res.ok) return res.text();
+    }
+
     const projResource = this.toResourceName(projectId, 'projects');
     const projId = this.extractId(projResource);
     const screenResource = screenId.includes('/')
@@ -233,7 +262,7 @@ export class StitchMcpClient {
       : `${projResource}/screens/${screenId}`;
     const scrId = this.extractId(screenResource);
 
-    // Try get_screen_code first (proxy tool from @_davideast/stitch-mcp)
+    // Try get_screen_code proxy tool (from @_davideast/stitch-mcp)
     try {
       const raw = await this.callTool<unknown>('get_screen_code', {
         projectId: projResource,
@@ -243,25 +272,30 @@ export class StitchMcpClient {
       const obj = raw as Record<string, unknown>;
       return (obj.html as string) || (obj.code as string) || JSON.stringify(raw);
     } catch {
-      // Fall back to native get_screen which returns htmlCode.downloadUrl
+      // Proxy tool not available, try native API
     }
 
-    // Fallback: use native get_screen and fetch HTML from downloadUrl
-    const screen = await this.callTool<Record<string, unknown>>('get_screen', {
-      name: screenResource,
-      projectId: projId,
-      screenId: scrId,
-    });
-
-    const htmlCode = screen.htmlCode as Record<string, unknown> | undefined;
-    if (htmlCode?.downloadUrl) {
-      const htmlRes = await fetch(htmlCode.downloadUrl as string, {
-        signal: AbortSignal.timeout(30000),
-      });
-      if (htmlRes.ok) return htmlRes.text();
+    // Native API: get_screen returns htmlCode.downloadUrl
+    // Retry because the screen may take a few seconds to be queryable
+    for (let attempt = 0; attempt < 3; attempt++) {
+      try {
+        const screen = await this.callTool<Record<string, unknown>>('get_screen', {
+          name: screenResource,
+          projectId: projId,
+          screenId: scrId,
+        });
+        const htmlCode = screen.htmlCode as Record<string, unknown> | undefined;
+        if (htmlCode?.downloadUrl) {
+          const htmlRes = await fetch(htmlCode.downloadUrl as string, {
+            signal: AbortSignal.timeout(30000),
+          });
+          if (htmlRes.ok) return htmlRes.text();
+        }
+      } catch { /* retry */ }
+      if (attempt < 2) await new Promise(r => setTimeout(r, (attempt + 1) * 2000));
     }
 
-    throw new Error('Could not retrieve screen HTML. Ensure get_screen_code proxy tool or native API is available.');
+    throw new Error('Could not retrieve screen HTML after 3 attempts. The screen may not be ready yet — try `forge sync` to pull screens.');
   }
 
   async getScreenImage(projectId: string, screenId: string): Promise<string> {

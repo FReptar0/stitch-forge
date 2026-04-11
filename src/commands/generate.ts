@@ -93,7 +93,7 @@ export async function runGenerate(description: string, opts: GenerateOptions): P
     const result = await client.generateScreen(projectId, prompt, model);
 
     log.step(2, 3, 'Retrieving screen code...');
-    const html = await client.getScreenCode(projectId, result.screenId);
+    const html = await client.getScreenCode(projectId, result.screenId, result.htmlCodeUrl);
 
     log.step(3, 3, 'Saving...');
     if (!existsSync('screens')) mkdirSync('screens');
