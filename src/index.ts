@@ -21,9 +21,10 @@ program
   .command('design')
   .description('Generate a DESIGN.md from a brand brief')
   .argument('[brief...]', 'Brand brief description')
-  .action(async (brief: string[]) => {
+  .option('--force', 'Overwrite without confirmation')
+  .action(async (brief: string[], opts: { force?: boolean }) => {
     const { runDesign } = await import('./commands/design.js');
-    await runDesign(brief.join(' '));
+    await runDesign(brief.join(' '), opts);
   });
 
 program

@@ -57,7 +57,9 @@ export function getConfig(): StitchConfig {
   try {
     const raw = readFileSync(path, 'utf-8');
     return { ...DEFAULT_CONFIG, ...JSON.parse(raw) };
-  } catch {
+  } catch (error) {
+    const msg = error instanceof Error ? error.message : 'unknown error';
+    console.error(`[forge] Warning: Failed to parse ${CONFIG_FILE}: ${msg}. Using defaults.`);
     return { ...DEFAULT_CONFIG };
   }
 }
