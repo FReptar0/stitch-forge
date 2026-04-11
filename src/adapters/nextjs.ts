@@ -1,7 +1,7 @@
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import * as cheerio from 'cheerio';
-import type { Framework, FrameworkAdapter, BuildContext, BuildResult } from './types.js';
+import { getForgeSignature, type Framework, type FrameworkAdapter, type BuildContext, type BuildResult } from './types.js';
 
 export class NextjsAdapter implements FrameworkAdapter {
   readonly name: Framework = 'nextjs';
@@ -112,7 +112,8 @@ export default function RootLayout({
         ? `\n      <style dangerouslySetInnerHTML={{ __html: \`${styles.join('\n')}\` }} />`
         : '';
 
-      const pageContent = `import type { Metadata } from 'next';
+      const forgeComment = getForgeSignature().replace('<!--', '{/*').replace('-->', '*/}');
+      const pageContent = `${forgeComment}import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: ${JSON.stringify(title)},

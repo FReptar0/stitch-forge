@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -11,360 +12,392 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚒️</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=DM+Sans:wght@400;500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                "brand-bg": "#0F0F1A",
-                "brand-primary": "#6C5CE7",
-                "brand-accent": "#00CEC9",
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline": "#757482",
+                      "secondary-fixed": "#5af9f3",
+                      "on-tertiary": "#2c2281",
+                      "on-primary-container": "#1d007a",
+                      "on-error-container": "#ffb2b9",
+                      "primary-dim": "#6f5fea",
+                      "secondary-fixed-dim": "#46eae5",
+                      "on-tertiary-container": "#211376",
+                      "inverse-primary": "#5948d3",
+                      "surface-container-low": "#12121e",
+                      "on-primary-fixed": "#000000",
+                      "surface-container-highest": "#242434",
+                      "surface": "#0d0d18",
+                      "on-secondary": "#005c59",
+                      "tertiary-dim": "#9992f5",
+                      "tertiary-fixed": "#ada7ff",
+                      "error-container": "#a70138",
+                      "secondary": "#5af9f3",
+                      "on-background": "#e9e6f7",
+                      "on-tertiary-fixed-variant": "#332a88",
+                      "primary-fixed-dim": "#8f83ff",
+                      "inverse-surface": "#fcf8ff",
+                      "surface-container-lowest": "#000000",
+                      "secondary-dim": "#46eae5",
+                      "on-error": "#490013",
+                      "on-primary": "#27009a",
+                      "secondary-container": "#006a67",
+                      "tertiary-container": "#a19afd",
+                      "error-dim": "#d73357",
+                      "outline-variant": "#474754",
+                      "on-secondary-container": "#dafffc",
+                      "inverse-on-surface": "#555461",
+                      "on-surface": "#e9e6f7",
+                      "surface-container": "#181826",
+                      "surface-dim": "#0d0d18",
+                      "surface-bright": "#2b2a3c",
+                      "on-secondary-fixed-variant": "#006764",
+                      "on-primary-fixed-variant": "#250094",
+                      "primary-container": "#9e93ff",
+                      "surface-container-high": "#1e1e2d",
+                      "on-tertiary-fixed": "#11005d",
+                      "tertiary": "#b0aaff",
+                      "on-surface-variant": "#aba9b9",
+                      "error": "#ff6e84",
+                      "on-secondary-fixed": "#004746",
+                      "primary": "#aca3ff",
+                      "tertiary-fixed-dim": "#9f98fa",
+                      "background": "#0d0d18",
+                      "surface-tint": "#aca3ff",
+                      "primary-fixed": "#9e93ff",
+                      "surface-variant": "#242434"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "fontFamily": {
+                      "headline": ["Space Grotesk"],
+                      "body": ["Inter"],
+                      "label": ["Space Grotesk"],
+                      "mono": ["JetBrains Mono"]
+              }
             },
-            "borderRadius": {
-                    "DEFAULT": "0.5rem",
-                    "lg": "1rem",
-                    "xl": "1.5rem",
-                    "full": "9999px"
-            },
-            "fontFamily": {
-                    "headline": ["Space Grotesk", "sans-serif"],
-                    "body": ["DM Sans", "sans-serif"],
-                    "label": ["DM Sans", "sans-serif"]
-            }
-          },
-        },
-      }
+          }
+        }
     </script>
 <style>
-        html { scroll-behavior: smooth; }
         body {
-            background-color: #0F0F1A;
-            color: #ffffff;
-            font-family: 'DM Sans', sans-serif;
-            overflow-x: hidden;
+            background-color: #0d0d18;
+            color: #e9e6f7;
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-card {
+            background: rgba(36, 36, 52, 0.4);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(172, 163, 255, 0.15);
+        }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .headline { font-family: 'Space Grotesk', sans-serif; }
+        .gradient-orb {
+            background: radial-gradient(circle, rgba(172, 163, 255, 0.15) 0%, rgba(90, 249, 243, 0.05) 100%);
+            filter: blur(80px);
         }
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-        .hero-gradient {
-            background: radial-gradient(circle at 50% 50%, rgba(108, 92, 231, 0.15) 0%, rgba(15, 15, 26, 0) 70%);
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .terminal-shadow {
-            box-shadow: 0 20px 50px -12px rgba(108, 92, 231, 0.3);
-        }
-        .nav-link { position: relative; }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #00CEC9;
-            transition: width 0.3s;
-        }
-        .nav-link:hover::after { width: 100%; }
-        .nav-link.active::after { width: 100%; }
     </style>
 </head>
-<body class="selection:bg-brand-primary/30">
+<body class="selection:bg-secondary/30 selection:text-secondary">
 <!-- TopNavBar -->
-<header class="fixed top-0 w-full z-50 bg-[#0F0F1A]/80 backdrop-blur-md border-b border-white/10 shadow-2xl shadow-purple-900/20">
-<nav class="flex justify-between items-center max-w-7xl mx-auto px-6 h-20">
-<div class="flex items-center gap-8">
-<a class="text-2xl font-black text-white bg-clip-text bg-gradient-to-r from-[#6C5CE7] to-[#00CEC9] font-['Space_Grotesk'] tracking-tight" href="#">Stitch Forge</a>
-<div class="hidden md:flex gap-6">
-<a class="nav-link active text-[#00CEC9] pb-1 font-['Space_Grotesk'] font-bold tracking-tight transition-colors duration-300" href="#features">Features</a>
-<a class="nav-link text-gray-400 font-medium font-['Space_Grotesk'] font-bold tracking-tight hover:text-white transition-colors duration-300" href="#how-it-works">How it Works</a>
-<a class="nav-link text-gray-400 font-medium font-['Space_Grotesk'] font-bold tracking-tight hover:text-white transition-colors duration-300" href="https://github.com/FReptar0/stitch-forge/blob/main/docs/design-md-guide.md" target="_blank">Docs</a>
-<a class="nav-link text-gray-400 font-medium font-['Space_Grotesk'] font-bold tracking-tight hover:text-white transition-colors duration-300" href="https://github.com/FReptar0/stitch-forge" target="_blank">GitHub</a>
+<nav class="fixed top-0 w-full z-50 bg-[#0d0d18]/40 backdrop-blur-xl border-b border-[#aca3ff]/15 shadow-[0_0_20px_rgba(172,163,255,0.08)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-[#e9e6f7] font-['Space_Grotesk']">
+                Stitch Forge
+            </div>
+<div class="hidden md:flex items-center gap-8 font-['Space_Grotesk'] tracking-tight text-sm uppercase">
+<a class="text-[#5af9f3] border-b-2 border-[#5af9f3] pb-1 hover:text-[#5af9f3] transition-colors duration-300" href="#features">Features</a>
+<a class="text-[#e9e6f7]/70 hover:text-[#5af9f3] transition-colors duration-300" href="#how-it-works">How it Works</a>
+<a class="text-[#e9e6f7]/70 hover:text-[#5af9f3] transition-colors duration-300" href="#commands">Commands</a>
+<a class="text-[#e9e6f7]/70 hover:text-[#5af9f3] transition-colors duration-300" href="https://github.com/FReptar0/stitch-forge" target="_blank">GitHub</a>
 </div>
-</div>
-<div class="flex items-center gap-4">
-<a href="https://github.com/FReptar0/stitch-forge#quick-start" target="_blank" class="p-2 text-gray-400 hover:text-white active:scale-95 transition-transform" title="Open in terminal">
-<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
-</a>
-<a href="https://github.com/FReptar0/stitch-forge#quick-start" target="_blank" class="bg-[#6C5CE7] text-white px-6 py-2.5 rounded-lg font-bold font-['Space_Grotesk'] active:scale-95 transition-all hover:shadow-[0_0_20px_rgba(108,92,231,0.5)] inline-block">
-                    Get Started
-</a>
+<a href="https://github.com/FReptar0/stitch-forge#quick-start" target="_blank" class="bg-[#aca3ff] text-[#1d007a] px-6 py-2 rounded-lg font-bold hover:shadow-[0_0_15px_#5af9f3] transition-all scale-95 active:scale-90 font-['Space_Grotesk'] no-underline inline-block">
+                Get Started
+            </a>
 </div>
 </nav>
-<!-- Mobile menu -->
-<div class="md:hidden flex gap-4 px-6 pb-3 overflow-x-auto">
-<a class="text-[#00CEC9] text-sm font-bold whitespace-nowrap" href="#features">Features</a>
-<a class="text-gray-400 text-sm font-bold whitespace-nowrap" href="#how-it-works">How it Works</a>
-<a class="text-gray-400 text-sm font-bold whitespace-nowrap" href="https://github.com/FReptar0/stitch-forge" target="_blank">GitHub</a>
-</div>
-</header>
-<main class="pt-20">
+<main class="pt-32">
 <!-- Hero Section -->
-<section id="hero" class="relative min-h-[921px] flex flex-col items-center justify-center px-6 hero-gradient overflow-hidden">
-<div class="absolute inset-0 z-0 opacity-20" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDGWKYduTHz0NnutB2AamZdvu8VBpdgT1LO9QFzZSYxhiCooUYwR9gG0AsMrkpaRgFua4Nu3ETjKpME094NuP2GLMxR2gC0_TiC83wqSFyjxGY9m7rOryD2xVaAkOkS5C_mvFzaaNz7AXQpMxQt5WH2hXSzxauBb_bzYShk0ACa6U98B2fMkABt0leyG7MJsEkxK00Ql8aZOa5hHpiYkf8KQJHaMTwaXFdaMtoFY0HkM3Tp-ynxXckcWASXkUYW-_-z52wjFx3kX3E');"></div>
-<div class="max-w-4xl text-center z-10 mt-12">
-<h1 class="text-5xl md:text-7xl font-headline font-bold leading-tight tracking-tight mb-6">
-                    Design websites with <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#6C5CE7] to-[#a29bfe] drop-shadow-[0_0_15px_rgba(108,92,231,0.5)]">AI</span>. <br/> Ship them with one command.
+<section class="max-w-7xl mx-auto px-8 mb-32 flex flex-col md:flex-row items-center gap-16">
+<div class="md:w-[55%]">
+<h1 class="headline text-6xl md:text-7xl font-bold text-on-surface leading-[1.1] tracking-tighter mb-6">
+                    Design.<br/>Generate.<br/>Ship.
                 </h1>
-<p class="text-lg md:text-xl text-gray-400 font-body max-w-2xl mx-auto mb-10 leading-relaxed">
-                    Stitch Forge turns Google Stitch into a full design-to-deploy pipeline. Generate screens, build design systems, and export to any framework — all from the terminal.
+<p class="text-xl text-on-surface-variant max-w-lg mb-10 leading-relaxed">
+                    The CLI framework that turns brand briefs into production websites using <span class="text-secondary">Google Stitch</span> and <span class="text-primary">Claude Code</span>.
                 </p>
-<div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-<a href="https://github.com/FReptar0/stitch-forge#quick-start" target="_blank" class="w-full sm:w-auto px-8 py-4 bg-[#6C5CE7] text-white font-bold rounded-xl text-lg hover:bg-[#5b4bc4] transition-all transform active:scale-95 shadow-xl shadow-purple-900/20 text-center">
+<div class="flex gap-4">
+<a href="https://github.com/FReptar0/stitch-forge#quick-start" target="_blank" class="bg-primary text-on-primary px-8 py-4 rounded-xl font-bold text-lg hover:shadow-[0_0_20px_rgba(172,163,255,0.4)] transition-all no-underline inline-block text-center">
                         Get Started
-</a>
-<a href="https://github.com/FReptar0/stitch-forge" target="_blank" class="w-full sm:w-auto px-8 py-4 border border-[#00CEC9]/40 text-[#00CEC9] font-bold rounded-xl text-lg hover:bg-[#00CEC9]/5 transition-all transform active:scale-95 text-center">
+                    </a>
+<a href="https://github.com/FReptar0/stitch-forge" target="_blank" class="border border-outline-variant/40 bg-surface-container-low px-8 py-4 rounded-xl font-bold text-lg hover:bg-surface-container-high transition-all no-underline inline-block text-center">
                         View on GitHub
-</a>
+                    </a>
 </div>
+</div>
+<div class="md:w-[45%] relative">
+<div class="gradient-orb absolute -inset-20 z-0"></div>
 <!-- Terminal Mockup -->
-<div class="relative max-w-3xl mx-auto w-full group">
-<div class="absolute -inset-1 bg-gradient-to-r from-[#6C5CE7] to-[#00CEC9] rounded-xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-<div class="relative bg-[#05050A] rounded-xl border border-white/10 overflow-hidden terminal-shadow">
-<div class="flex items-center px-4 py-3 border-b border-white/5 bg-white/5">
-<div class="flex gap-2">
-<div class="w-3 h-3 rounded-full bg-red-500/50"></div>
-<div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-<div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+<div class="relative z-10 w-full glass-card rounded-xl overflow-hidden shadow-2xl border border-outline-variant/20">
+<div class="bg-surface-container-highest h-10 px-4 flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-error/40"></div>
+<div class="w-3 h-3 rounded-full bg-secondary/40"></div>
+<div class="w-3 h-3 rounded-full bg-primary/40"></div>
+<div class="ml-4 text-xs font-mono text-outline">bash — 80x24</div>
 </div>
-<div class="mx-auto text-xs text-gray-500 font-mono">zsh — stitch-forge</div>
+<div class="p-6 font-mono text-sm min-h-[300px] bg-surface-container-lowest/80">
+<div class="mb-2"><span class="text-secondary">$</span> <span class="text-on-surface">forge discover</span></div>
+<div class="text-outline-variant mb-4">→ Analyzing project requirements...</div>
+<div class="mb-2"><span class="text-secondary">$</span> <span class="text-on-surface">forge generate</span></div>
+<div class="text-outline-variant mb-4">→ Orchestrating Claude-3.7 &amp; Google Stitch...</div>
+<div class="mb-2"><span class="text-secondary">$</span> <span class="text-on-surface">forge build</span></div>
+<div class="text-secondary mb-2">✔ Optimized production bundle created in 1.2s</div>
+<div class="flex items-center gap-2 animate-pulse">
+<span class="text-primary">█</span>
 </div>
-<div class="p-6 text-left font-mono text-sm md:text-base leading-relaxed">
-<div class="flex gap-3 mb-2">
-<span class="text-gray-500">$</span>
-<span class="text-white">forge design <span class="text-[#00CEC9]">"Acme, SaaS, modern"</span></span>
 </div>
-<div class="text-gray-500 mb-4 ml-6 italic">Generating brand architecture... done.</div>
-<div class="flex gap-3 mb-2">
-<span class="text-gray-500">$</span>
-<span class="text-white">forge generate <span class="text-[#00CEC9]">"Landing page"</span></span>
 </div>
-<div class="text-gray-500 mb-4 ml-6 italic">Assembling components... 100% complete.</div>
-<div class="flex gap-3">
-<span class="text-gray-500">$</span>
-<span class="text-white">forge build <span class="text-brand-primary">--framework nextjs</span></span>
 </div>
-<div class="mt-4 animate-pulse text-[#00CEC9]">_</div>
+</section>
+<!-- Stats Strip -->
+<section class="max-w-7xl mx-auto px-8 mb-32">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<div class="glass-card p-6 rounded-xl flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary text-3xl">psychology</span>
+<div>
+<div class="text-2xl font-bold headline">7 Skills</div>
+<div class="text-xs text-outline uppercase tracking-widest">Autonomous agents</div>
 </div>
+</div>
+<div class="glass-card p-6 rounded-xl flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary text-3xl">layers</span>
+<div>
+<div class="text-2xl font-bold headline">3 Frameworks</div>
+<div class="text-xs text-outline uppercase tracking-widest">Next.js, Astro, Static</div>
+</div>
+</div>
+<div class="glass-card p-6 rounded-xl flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary text-3xl">verified_user</span>
+<div>
+<div class="text-2xl font-bold headline">121 Tests</div>
+<div class="text-xs text-outline uppercase tracking-widest">Validation suites</div>
+</div>
+</div>
+<div class="glass-card p-6 rounded-xl flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary text-3xl">code</span>
+<div>
+<div class="text-2xl font-bold headline">Open Source</div>
+<div class="text-xs text-outline uppercase tracking-widest">Forge Protocol v1.2</div>
 </div>
 </div>
 </div>
 </section>
 <!-- Features Bento Grid -->
-<section id="features" class="max-w-7xl mx-auto px-6 py-24">
-<div class="text-center mb-16">
-<h2 class="text-3xl md:text-5xl font-headline font-bold mb-4">Powerful Features</h2>
-<p class="text-gray-400 font-body">Everything you need to automate your frontend workflow.</p>
-</div>
+<section class="max-w-7xl mx-auto px-8 mb-32">
+<h2 class="headline text-4xl font-bold mb-12 flex items-center gap-4">
+                <span id="features"></span>What Stitch Forge Does
+                <span class="h-[1px] flex-grow bg-outline-variant/30"></span>
+</h2>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[240px]">
-<!-- Card 1: DESIGN.md -->
-<div class="md:col-span-1 md:row-span-1 glass-card p-8 rounded-2xl flex flex-col justify-between hover:border-brand-primary/50 transition-colors group">
-<span class="material-symbols-outlined text-4xl text-brand-primary mb-4" data-icon="palette">palette</span>
+<!-- Large Card -->
+<div class="md:col-span-2 md:row-span-2 glass-card rounded-2xl p-10 overflow-hidden relative group">
+<div class="relative z-10 h-full flex flex-col justify-between">
 <div>
-<h3 class="text-xl font-headline font-bold mb-2">DESIGN.md Generator</h3>
-<p class="text-gray-400 text-sm">8-section design system spec with strict validation — hex colors, rem sizes, component patterns.</p>
+<span class="material-symbols-outlined text-primary text-5xl mb-6">smart_toy</span>
+<h3 class="headline text-3xl font-bold mb-4">Design Intelligence Agent</h3>
+<p class="text-on-surface-variant max-w-md text-lg">
+                                Automatically researches your business, analyzes competitors, and generates a comprehensive DESIGN.md blueprint before a single line of code is written.
+                            </p>
 </div>
-</div>
-<!-- Card 2: Prompt Builder -->
-<div class="md:col-span-1 md:row-span-1 glass-card p-8 rounded-2xl flex flex-col justify-between hover:border-brand-primary/50 transition-colors">
-<span class="material-symbols-outlined text-4xl text-brand-accent mb-4" data-icon="auto_fix_high">auto_fix_high</span>
-<div>
-<h3 class="text-xl font-headline font-bold mb-2">Prompt Builder</h3>
-<p class="text-gray-400 text-sm">Zoom-out-zoom-in framework with guardrails: max length, single-screen, no vague requests.</p>
-</div>
-</div>
-<!-- Card 3: Multi-Framework Export -->
-<div class="md:col-span-1 md:row-span-2 glass-card p-8 rounded-2xl flex flex-col group overflow-hidden">
-<div class="mb-auto">
-<span class="material-symbols-outlined text-4xl text-brand-primary mb-4" data-icon="layers">layers</span>
-<h3 class="text-xl font-headline font-bold mb-2">Multi-Framework Export</h3>
-<p class="text-gray-400 text-sm">One command, any framework. <code class="text-brand-accent">--framework static | astro | nextjs</code></p>
-</div>
-<div class="mt-8 relative h-full flex items-center justify-center opacity-60 group-hover:opacity-100 transition-opacity">
-<div class="grid grid-cols-2 gap-4">
-<div class="px-4 py-2 bg-white/5 rounded border border-white/10 text-xs font-mono">Next.js</div>
-<div class="px-4 py-2 bg-white/5 rounded border border-white/10 text-xs font-mono">Astro</div>
-<div class="px-4 py-2 bg-white/5 rounded border border-brand-accent/30 text-xs font-mono text-brand-accent">Static HTML</div>
-<div class="px-4 py-2 bg-white/5 rounded border border-white/10 text-xs font-mono opacity-50">More soon</div>
+<div class="flex gap-4 items-center">
+<span class="text-secondary font-mono">Status: ACTIVE</span>
+<div class="h-1 w-24 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-2/3"></div>
 </div>
 </div>
 </div>
-<!-- Card 4: Live Preview -->
-<div class="md:col-span-2 md:row-span-1 glass-card p-8 rounded-2xl flex flex-col justify-between relative overflow-hidden">
-<div class="relative z-10 max-w-sm">
-<span class="material-symbols-outlined text-4xl text-[#00CEC9] mb-4" data-icon="visibility">visibility</span>
-<h3 class="text-xl font-headline font-bold mb-2">Live Preview</h3>
-<p class="text-gray-400 text-sm">Open screens in your browser from CLI, TUI, or view inline in Claude Code via MCP.</p>
-</div>
-<div class="absolute right-0 bottom-0 w-1/2 h-full opacity-10 pointer-events-none">
-<img alt="Abstract glowing lines" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpyBwCxioFFtcV3nsfmedVSy-TP0W3AjqP_aOh-DHQo0dQQxXIU-1bOpnRHDjIOGqsCzXT0CYxa4zKNGpyCloSQIW05T9GzEJV_UR4AEV5Lceig62yqGVJ1mXVke6jO7vvEM6mWYYrjTKb_umUyn-JyLBMJWXJf-XMw-3CAve3TNcJbKeaKm2_YFJ4C0CUb60CDreO4r7nPYfaYW9qUO6lOHbelxws60CYd7nPy3dJb4RJ1UWrrYqNrchdIdRF7jaAJX-P42aCmzM"/>
+<div class="absolute top-0 right-0 w-1/2 h-full opacity-20 pointer-events-none group-hover:opacity-40 transition-opacity">
+<img class="object-cover w-full h-full" data-alt="abstract neural network visualization with glowing purple and cyan nodes dark background high tech aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLPVkOMFdwwUzeEQ-qOghtk8cL31rlxiXSB4b8bwpKmkPtzMMie1up-dQs0DFw-3hHWbTNnx6gfMwhUiCicgTnGoFcTob0pDWOqylI40clFCxstcmxAnj85pmBhjWJdvG-vQqb2QmI04xL3MbnaLrtMF5k1aOxeKque3BiPGPvmUYEhT5ipk7OeD0bXGYLxQC03CPT-90kAI5BdI8mAtEYuqBmd88bFHUVjql3ug4ZyQcikY1L159KwtbD9-q3YurtXNm705Ja8dFS"/>
 </div>
 </div>
-<!-- Card 5: Quota Tracker -->
-<div class="glass-card p-8 rounded-2xl flex flex-col justify-between hover:border-brand-primary/50 transition-colors">
-<span class="material-symbols-outlined text-4xl text-brand-primary mb-4" data-icon="speed">speed</span>
-<div>
-<h3 class="text-xl font-headline font-bold mb-2">Quota Tracker</h3>
-<p class="text-gray-400 text-sm">Visual meter for Flash (350/mo) and Pro (50/mo) generation limits. Never exceed your quota.</p>
+<!-- Medium Card 1 -->
+<div class="glass-card rounded-2xl p-8 group">
+<span class="material-symbols-outlined text-primary text-4xl mb-4 group-hover:scale-110 transition-transform">auto_awesome</span>
+<h3 class="headline text-xl font-bold mb-2">Screen Generation</h3>
+<p class="text-on-surface-variant text-sm">
+                        Optimized prompting layer translates design intent into high-fidelity Stitch components automatically.
+                    </p>
 </div>
+<!-- Medium Card 2 -->
+<div class="glass-card rounded-2xl p-8 group">
+<span class="material-symbols-outlined text-primary text-4xl mb-4 group-hover:scale-110 transition-transform">rule</span>
+<h3 class="headline text-xl font-bold mb-2">Anti-Slop Validation</h3>
+<p class="text-on-surface-variant text-sm">
+                        Proprietary heuristics engine catches common AI patterns and "slop" to ensure human-grade quality.
+                    </p>
 </div>
-<!-- Card 6: Auto-Research -->
-<div class="glass-card p-8 rounded-2xl flex flex-col justify-between hover:border-brand-primary/50 transition-colors">
-<span class="material-symbols-outlined text-4xl text-brand-accent mb-4" data-icon="radar">radar</span>
-<div>
-<h3 class="text-xl font-headline font-bold mb-2">Auto-Research</h3>
-<p class="text-gray-400 text-sm">Crawls Stitch docs, blog, and forums — diffs against known state, updates your knowledge base.</p>
-</div>
+<!-- Medium Card 3 -->
+<div class="glass-card rounded-2xl p-8 group">
+<span class="material-symbols-outlined text-primary text-4xl mb-4 group-hover:scale-110 transition-transform">rocket_launch</span>
+<h3 class="headline text-xl font-bold mb-2">Multi-Framework Build</h3>
+<p class="text-on-surface-variant text-sm">
+                        Export your site to production-ready Next.js, Astro, or clean Static HTML/CSS in seconds.
+                    </p>
 </div>
 </div>
 </section>
-<!-- How it Works Section -->
-<section id="how-it-works" class="py-24 relative overflow-hidden">
-<div class="max-w-7xl mx-auto px-6">
+<!-- How it Works -->
+<section class="bg-surface-container-low py-32 mb-32">
+<div class="max-w-7xl mx-auto px-8">
 <div class="text-center mb-20">
-<h2 class="text-3xl md:text-5xl font-headline font-bold mb-4">How It Works</h2>
-<p class="text-gray-400 font-body">From idea to production in three steps.</p>
+<h2 id="how-it-works" class="headline text-4xl font-bold mb-4">Three Steps to Ship</h2>
+<p class="text-on-surface-variant">From brand brief to deployment in record time.</p>
 </div>
-<div class="relative grid grid-cols-1 md:grid-cols-3 gap-12">
-<!-- Connector line for desktop -->
-<div class="hidden md:block absolute top-24 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-brand-primary/30 to-transparent z-0"></div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
 <!-- Step 1 -->
-<div class="relative z-10 flex flex-col items-center text-center">
-<div class="w-16 h-16 bg-[#6C5CE7] rounded-full flex items-center justify-center text-2xl font-bold mb-8 shadow-[0_0_30px_rgba(108,92,231,0.4)]">1</div>
-<h3 class="text-2xl font-headline font-bold mb-4">Describe your brand</h3>
-<div class="w-full aspect-video bg-black/40 rounded-xl border border-white/10 p-4 font-mono text-left text-xs mb-4">
-<div class="text-gray-500">$ forge design</div>
-<div class="text-brand-accent mt-1">"Acme Corp, SaaS, startups, modern minimal"</div>
-<div class="text-gray-500 mt-2 italic">→ DESIGN.md created (8 sections)</div>
+<div class="relative">
+<div class="text-[120px] font-bold headline text-primary/10 absolute -top-16 -left-8 leading-none select-none">1</div>
+<div class="glass-card p-10 rounded-2xl relative z-10 h-full">
+<h3 class="headline text-2xl font-bold mb-4 font-mono text-secondary">forge discover</h3>
+<p class="text-on-surface-variant mb-6">Agent analyzes your business goals and generates a DESIGN.md and THEME.json file defining your brand identity.</p>
+<div class="bg-surface-container-lowest p-4 rounded-lg font-mono text-xs border border-outline-variant/10">
+<span class="text-outline-variant"># Analyzing...</span><br/>
+<span class="text-secondary">Output:</span> brand_brief.md
+                            </div>
 </div>
-<p class="text-gray-400">A single command generates your full design system — colors, fonts, spacing, and component patterns.</p>
 </div>
 <!-- Step 2 -->
-<div class="relative z-10 flex flex-col items-center text-center">
-<div class="w-16 h-16 bg-[#00CEC9] rounded-full flex items-center justify-center text-2xl font-bold mb-8 shadow-[0_0_30px_rgba(0,206,201,0.4)] text-[#0F0F1A]">2</div>
-<h3 class="text-2xl font-headline font-bold mb-4">AI generates screens</h3>
-<div class="w-full aspect-video bg-black/40 rounded-xl border border-white/10 p-4 font-mono text-left text-xs mb-4">
-<div class="text-gray-500">$ forge generate</div>
-<div class="text-brand-accent mt-1">"Landing page with hero, features, CTA"</div>
-<div class="text-gray-500 mt-2 italic">→ screens/homepage.html saved</div>
-<div class="text-gray-500 italic">→ Preview opened in browser</div>
+<div class="relative">
+<div class="text-[120px] font-bold headline text-primary/10 absolute -top-16 -left-8 leading-none select-none">2</div>
+<div class="glass-card p-10 rounded-2xl relative z-10 h-full border-primary/30">
+<h3 class="headline text-2xl font-bold mb-4 font-mono text-secondary">forge generate</h3>
+<p class="text-on-surface-variant mb-6">Claude orchestrates with Google Stitch to generate pixel-perfect screens based on your brand blueprint.</p>
+<div class="bg-surface-container-lowest p-4 rounded-lg font-mono text-xs border border-outline-variant/10">
+<span class="text-outline-variant"># Generating...</span><br/>
+<span class="text-primary">Stitching:</span> index.html (98%)
+                            </div>
 </div>
-<p class="text-gray-400">Stitch MCP builds pixel-perfect HTML from your prompt, guided by your DESIGN.md rules.</p>
 </div>
 <!-- Step 3 -->
-<div class="relative z-10 flex flex-col items-center text-center">
-<div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-2xl font-bold mb-8 shadow-[0_0_30px_rgba(255,255,255,0.2)] text-[#0F0F1A]">3</div>
-<h3 class="text-2xl font-headline font-bold mb-4">Export &amp; deploy</h3>
-<div class="w-full aspect-video bg-black/40 rounded-xl border border-white/10 p-4 font-mono text-left text-xs mb-4">
-<div class="text-gray-500">$ forge build --framework nextjs</div>
-<div class="text-gray-500 mt-2 italic">→ out/app/page.tsx</div>
-<div class="text-gray-500 italic">→ out/app/about/page.tsx</div>
-<div class="text-green-400 mt-2">Site built successfully!</div>
+<div class="relative">
+<div class="text-[120px] font-bold headline text-primary/10 absolute -top-16 -left-8 leading-none select-none">3</div>
+<div class="glass-card p-10 rounded-2xl relative z-10 h-full">
+<h3 class="headline text-2xl font-bold mb-4 font-mono text-secondary">forge build</h3>
+<p class="text-on-surface-variant mb-6">One command to export optimized, accessible, and high-performance code ready for Vercel or Netlify.</p>
+<div class="bg-surface-container-lowest p-4 rounded-lg font-mono text-xs border border-outline-variant/10">
+<span class="text-outline-variant"># Building...</span><br/>
+<span class="text-error">Success:</span> site_bundle.zip
+                            </div>
 </div>
-<p class="text-gray-400">Export to Static HTML, Astro, or Next.js. Deploy anywhere — Vercel, Netlify, GitHub Pages.</p>
 </div>
 </div>
 </div>
 </section>
-<!-- Claude Code Section -->
-<section id="claude-code" class="max-w-7xl mx-auto px-6 py-24">
-<div class="text-center mb-16">
-<h2 class="text-3xl md:text-5xl font-headline font-bold mb-4">Built for <span class="text-brand-accent">Claude Code</span></h2>
-<p class="text-gray-400 font-body max-w-2xl mx-auto">Six slash commands turn Claude into your design co-pilot. Generate a full website without leaving the conversation.</p>
+<!-- Commands Showcase -->
+<section class="max-w-7xl mx-auto px-8 mb-32">
+<h2 id="commands" class="headline text-4xl font-bold mb-12 text-center">Built for Claude Code</h2>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<div class="glass-card p-6 rounded-xl border-l-2 border-secondary group hover:bg-secondary/5 transition-all">
+<code class="text-secondary font-mono text-lg block mb-2">/forge-discover</code>
+<p class="text-sm text-outline">Kickstart brand research agent</p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-<div class="glass-card p-6 rounded-xl">
-<code class="text-brand-primary font-bold">/forge-design</code>
-<p class="text-gray-400 text-sm mt-2">Generate DESIGN.md from a brand brief</p>
+<div class="glass-card p-6 rounded-xl border-l-2 border-secondary group hover:bg-secondary/5 transition-all">
+<code class="text-secondary font-mono text-lg block mb-2">/forge-design</code>
+<p class="text-sm text-outline">Refine the visual identity system</p>
 </div>
-<div class="glass-card p-6 rounded-xl">
-<code class="text-brand-primary font-bold">/forge-generate</code>
-<p class="text-gray-400 text-sm mt-2">Generate screens with guided prompts</p>
+<div class="glass-card p-6 rounded-xl border-l-2 border-secondary group hover:bg-secondary/5 transition-all">
+<code class="text-secondary font-mono text-lg block mb-2">/forge-generate</code>
+<p class="text-sm text-outline">Trigger screen synthesis protocol</p>
 </div>
-<div class="glass-card p-6 rounded-xl">
-<code class="text-brand-primary font-bold">/forge-build</code>
-<p class="text-gray-400 text-sm mt-2">Build and export to your chosen framework</p>
+<div class="glass-card p-6 rounded-xl border-l-2 border-secondary group hover:bg-secondary/5 transition-all">
+<code class="text-secondary font-mono text-lg block mb-2">/forge-preview</code>
+<p class="text-sm text-outline">Spin up local design environment</p>
 </div>
-<div class="glass-card p-6 rounded-xl">
-<code class="text-brand-accent font-bold">/forge-preview</code>
-<p class="text-gray-400 text-sm mt-2">Preview screens inline via MCP image</p>
+<div class="glass-card p-6 rounded-xl border-l-2 border-secondary group hover:bg-secondary/5 transition-all">
+<code class="text-secondary font-mono text-lg block mb-2">/forge-build</code>
+<p class="text-sm text-outline">Compile to production framework</p>
 </div>
-<div class="glass-card p-6 rounded-xl">
-<code class="text-brand-accent font-bold">/forge-research</code>
-<p class="text-gray-400 text-sm mt-2">Check for Stitch API updates</p>
-</div>
-<div class="glass-card p-6 rounded-xl">
-<code class="text-brand-accent font-bold">/forge-sync</code>
-<p class="text-gray-400 text-sm mt-2">Pull latest from a Stitch project</p>
+<div class="glass-card p-6 rounded-xl border-l-2 border-secondary group hover:bg-secondary/5 transition-all">
+<code class="text-secondary font-mono text-lg block mb-2">/forge-sync</code>
+<p class="text-sm text-outline">Deploy changes to remote repo</p>
 </div>
 </div>
 </section>
 <!-- CTA Section -->
-<section class="max-w-7xl mx-auto px-6 py-24">
-<div class="bg-gradient-to-br from-[#6C5CE7]/20 to-[#00CEC9]/10 rounded-3xl p-12 text-center border border-white/10">
-<h2 class="text-4xl md:text-5xl font-headline font-bold mb-6">Ready to forge your next masterpiece?</h2>
-<p class="text-gray-400 mb-10 max-w-2xl mx-auto">Open source. MIT licensed. Clone the repo and start designing in under a minute.</p>
-<div class="flex flex-col sm:flex-row justify-center gap-4">
-<a href="https://github.com/FReptar0/stitch-forge#quick-start" target="_blank" class="bg-[#6C5CE7] px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#5b4bc4] transition-all inline-block text-center">Start Designing Now</a>
-<a href="https://github.com/FReptar0/stitch-forge/blob/main/docs/design-md-guide.md" target="_blank" class="bg-white/5 backdrop-blur-md px-8 py-4 rounded-xl font-bold text-lg border border-white/10 hover:bg-white/10 transition-all inline-block text-center">Read the Docs</a>
+<section class="max-w-5xl mx-auto px-8 mb-32 relative overflow-hidden rounded-3xl p-20 text-center">
+<div class="gradient-orb absolute inset-0 opacity-40"></div>
+<div class="relative z-10">
+<h2 class="headline text-5xl font-bold mb-8">Start Building Now</h2>
+<div class="bg-surface-container-lowest/80 border border-outline-variant/30 rounded-xl max-w-md mx-auto p-4 flex items-center justify-between mb-10 group">
+<code class="font-mono text-primary">git clone https://github.com/FReptar0/stitch-forge.git</code>
+<button class="material-symbols-outlined text-outline group-hover:text-on-surface transition-colors">content_copy</button>
+</div>
+<div class="flex flex-col md:flex-row gap-4 justify-center">
+<a href="https://github.com/FReptar0/stitch-forge#quick-start" target="_blank" class="bg-primary text-on-primary px-10 py-4 rounded-xl font-bold text-lg hover:shadow-[0_0_20px_#aca3ff] transition-all no-underline inline-block text-center">
+                        Get Started
+                    </a>
+<a href="https://github.com/FReptar0/stitch-forge" target="_blank" class="border border-outline-variant/40 px-10 py-4 rounded-xl font-bold text-lg hover:bg-surface-container-high transition-all no-underline inline-block text-center">
+                        View on GitHub
+                    </a>
 </div>
 </div>
 </section>
 </main>
 <!-- Footer -->
-<footer class="bg-[#0F0F1A] border-t border-white/5 w-full py-12">
-<div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-6">
-<div class="mb-8 md:mb-0">
-<a href="#" class="text-lg font-bold text-white mb-2 inline-block">Stitch Forge</a>
-<p class="font-['DM_Sans'] text-sm text-gray-500 max-w-xs">&copy; 2026 <a href="https://fernandomemije.dev" target="_blank" class="hover:text-brand-accent transition-colors">Fernando Rodriguez Memije</a>. MIT License.</p>
+<footer class="bg-[#0d0d18] w-full border-t border-[#aca3ff]/10 pt-16 pb-8">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-12 mb-16">
+<div class="col-span-2 md:col-span-1">
+<div class="text-xl font-bold font-['Space_Grotesk'] text-[#e9e6f7] mb-6">Stitch Forge</div>
+<p class="font-['DM_Sans'] text-sm text-[#e9e6f7]/60 leading-relaxed max-w-xs">
+                    Open-source CLI framework that automates web design using Google Stitch and Claude Code. MIT Licensed.
+                </p>
 </div>
-<div class="flex flex-wrap justify-center gap-8">
-<a class="text-gray-500 font-['DM_Sans'] text-sm hover:text-[#00CEC9] transition-colors" href="https://github.com/FReptar0/stitch-forge#readme" target="_blank">Documentation</a>
-<a class="text-gray-500 font-['DM_Sans'] text-sm hover:text-[#00CEC9] transition-colors" href="https://github.com/FReptar0/stitch-forge/blob/main/CHANGELOG.md" target="_blank">Changelog</a>
-<a class="text-gray-500 font-['DM_Sans'] text-sm hover:text-[#00CEC9] transition-colors" href="https://github.com/FReptar0/stitch-forge/issues" target="_blank">Issues</a>
-<a class="text-gray-500 font-['DM_Sans'] text-sm hover:text-[#00CEC9] transition-colors" href="https://github.com/FReptar0/stitch-forge/blob/main/LICENSE" target="_blank">License</a>
+<div>
+<h4 class="text-[#aca3ff] font-bold mb-6 text-sm uppercase tracking-widest">Product</h4>
+<ul class="space-y-4 font-['DM_Sans'] text-sm text-[#e9e6f7]/50">
+<li><a href="https://github.com/FReptar0/stitch-forge/releases" target="_blank" class="hover:text-[#5af9f3] transition-all no-underline">Changelog</a></li>
+<li><a href="https://github.com/FReptar0/stitch-forge#readme" target="_blank" class="hover:text-[#5af9f3] transition-all no-underline">Documentation</a></li>
+<li><a href="#features" class="hover:text-[#5af9f3] transition-all no-underline">Features</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-[#aca3ff] font-bold mb-6 text-sm uppercase tracking-widest">Community</h4>
+<ul class="space-y-4 font-['DM_Sans'] text-sm text-[#e9e6f7]/50">
+<li><a href="https://github.com/FReptar0/stitch-forge" target="_blank" class="hover:text-[#5af9f3] transition-all no-underline">GitHub</a></li>
+<li><a href="https://github.com/FReptar0/stitch-forge/discussions" target="_blank" class="hover:text-[#5af9f3] transition-all no-underline">Discussions</a></li>
+<li><a href="https://github.com/FReptar0/stitch-forge/blob/main/CONTRIBUTING.md" target="_blank" class="hover:text-[#5af9f3] transition-all no-underline">Contributing</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-[#aca3ff] font-bold mb-6 text-sm uppercase tracking-widest">Connect</h4>
+<ul class="space-y-4 font-['DM_Sans'] text-sm text-[#e9e6f7]/50">
+<li><a href="https://linkedin.com/in/fernando-rodriguez-memije" target="_blank" class="hover:text-[#5af9f3] transition-all no-underline">LinkedIn</a></li>
+<li><a href="https://github.com/FReptar0/stitch-forge/issues" target="_blank" class="hover:text-[#5af9f3] transition-all no-underline">Report Issue</a></li>
+<li><a href="https://github.com/FReptar0/stitch-forge/blob/main/LICENSE" target="_blank" class="hover:text-[#5af9f3] transition-all no-underline">MIT License</a></li>
+</ul>
 </div>
 </div>
-<div class="flex justify-center gap-6 mt-8">
-<a href="https://github.com/FReptar0" target="_blank" class="text-gray-600 hover:text-white transition-colors">
-<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-</a>
-<a href="https://www.linkedin.com/in/fernando-rm/" target="_blank" class="text-gray-600 hover:text-white transition-colors">
-<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-</a>
-<a href="https://fernandomemije.dev" target="_blank" class="text-gray-600 hover:text-white transition-colors">
-<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
-</a>
-<a href="mailto:hi@fernandomemije.dev" class="text-gray-600 hover:text-white transition-colors">
-<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-</a>
+<div class="max-w-7xl mx-auto px-8 flex justify-between items-center border-t border-[#aca3ff]/10 pt-8 opacity-80">
+<div class="font-['DM_Sans'] text-xs text-[#e9e6f7]/60">
+                © 2026 Stitch Forge. Built by Fernando Rodriguez Memije.
+            </div>
+<div class="font-['DM_Sans'] text-xs text-[#e9e6f7]/60">
+                MIT License
+            </div>
 </div>
 </footer>
-<!-- Active nav highlight on scroll -->
-<script>
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-link');
-window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-        const top = section.offsetTop - 100;
-        if (scrollY >= top) current = section.getAttribute('id');
-    });
-    navLinks.forEach(link => {
-        link.classList.remove('active', 'text-[#00CEC9]');
-        link.classList.add('text-gray-400');
-        if (link.getAttribute('href') === '#' + current) {
-            link.classList.add('active', 'text-[#00CEC9]');
-            link.classList.remove('text-gray-400');
-        }
-    });
-});
-</script>
 </body></html>

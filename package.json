@@ -1,6 +1,6 @@
 {
   "name": "stitch-forge",
-  "version": "0.2.0",
+  "version": "0.3.1",
   "description": "Stitch Forge — CLI framework for automating web design with Google Stitch MCP",
   "type": "module",
   "bin": {

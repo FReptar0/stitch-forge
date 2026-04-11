@@ -1,5 +1,11 @@
 export type Framework = 'static' | 'astro' | 'nextjs';
 
+/** Stitch Forge signature injected as HTML comment at the top of every generated file */
+export function getForgeSignature(): string {
+  const now = new Date().toISOString().split('T')[0];
+  return `<!-- Built with Stitch Forge (https://github.com/FReptar0/stitch-forge) — ${now} -->\n`;
+}
+
 export interface ScreenData {
   screenId: string;
   route: string;

@@ -1,7 +1,7 @@
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import * as cheerio from 'cheerio';
-import type { Framework, FrameworkAdapter, BuildContext, BuildResult } from './types.js';
+import { getForgeSignature, type Framework, type FrameworkAdapter, type BuildContext, type BuildResult } from './types.js';
 
 export class StaticAdapter implements FrameworkAdapter {
   readonly name: Framework = 'static';
@@ -23,7 +23,7 @@ export class StaticAdapter implements FrameworkAdapter {
       const filePath = this.routeToFilePath(outputDir, screen.route);
       const dir = filePath.substring(0, filePath.lastIndexOf('/'));
       mkdirSync(dir, { recursive: true });
-      writeFileSync(filePath, $.html());
+      writeFileSync(filePath, getForgeSignature() + $.html());
       files.push(filePath);
     }
 
