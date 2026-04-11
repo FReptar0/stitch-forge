@@ -6,41 +6,74 @@ description: >
   Maps screens to routes and generates a static HTML, Astro, or Next.js project.
 ---
 
-Build a deployable site from Stitch screens using a selected framework.
+Build a deployable site from Stitch screens.
 
-Supported frameworks: `static` (default, plain HTML), `astro` (Stitch MCP build_site), `nextjs` (App Router with static export). Ask the user which framework to use before building. Check `.forgerc.json` for a saved `framework` preference.
+## Step 1: Select Framework
 
-## Instructions
+Present these options to the user before doing anything else:
 
-1. **List all projects** using `mcp__stitch__list_projects`. If multiple exist, ask the user which project to build from.
+| Framework | Best For | What It Generates |
+|-----------|----------|-------------------|
+| **static** (default) | Simple sites, GitHub Pages | Plain HTML files with shared nav, ready to deploy anywhere |
+| **astro** | Content sites, blogs | Astro project via Stitch MCP `build_site` tool |
+| **nextjs** | Apps, dynamic sites | Next.js App Router project with static export |
 
-2. **List all screens** in the selected project using `mcp__stitch__list_screens`.
+Check `.forgerc.json` for a saved `framework` preference. If set, confirm with the user: "Your config prefers [framework]. Use that, or choose a different one?"
 
-3. **Present the route mapping** to the user for confirmation:
-   - The first screen or any screen named "home/landing/hero/main" maps to `/`
-   - Other screens map to `/{screen-name-lowercase}`
-   - Ask the user if they want to adjust any routes
+## Step 2: Select Project & Screens
 
-4. **Show the mapping** clearly:
-   ```
-   Screen            Route
-   Homepage      ->  /
-   About Us      ->  /about-us
-   Pricing       ->  /pricing
-   Contact       ->  /contact
-   ```
+1. List all projects using `mcp__stitch__list_projects`. If multiple exist, ask which to build from.
+2. List all screens using `mcp__stitch__list_screens`.
+3. Present the route mapping for confirmation:
 
-5. **Confirm** with the user before building.
+```
+Screen              Route
+Landing Page    ->  /
+About Us        ->  /about-us
+Pricing         ->  /pricing
+```
 
-6. **Retrieve screen code** for each screen using `mcp__stitch__get_screen_code` to get the HTML/CSS.
+Rules:
+- First screen or any named "home/landing/hero/main" maps to `/`
+- Others map to `/{screen-name-lowercase}`
+- Ask if the user wants to adjust any routes
 
-7. **Save all screen files** to the `screens/` directory.
+## Step 3: Build
 
-8. **Explain next steps** clearly:
-   - "Your site screens have been saved to the `screens/` folder"
-   - "Each file contains the complete HTML/CSS for that page"
-   - "You can open any `.html` file in your browser to preview it"
+### Static HTML
+For each screen:
+1. Retrieve HTML using `mcp__stitch__get_screen_code` (or `mcp__stitch__get_screen` + download URL)
+2. Save to `dist/{route}/index.html`
+3. Inject shared navigation at the top of each page
+4. Inject the Stitch Forge signature comment: `<!-- Built with Stitch Forge -->`
 
-9. **Next step**: "Open the built site in your browser to review."
+Tell the user: "Your site is in the `dist/` folder. Open `dist/index.html` in your browser to preview. To deploy to GitHub Pages, push the `dist/` folder. For Netlify/Vercel, point to the `dist/` directory."
 
-Do NOT output raw CLI commands like `cd dist && npm install`. Explain in plain language.
+### Astro
+1. Call `mcp__stitch__build_site` with the project ID and route mapping
+2. Follow the Stitch MCP output instructions
+
+Tell the user: "Stitch generated an Astro project. Follow the output instructions to install dependencies and run the dev server."
+
+### Next.js
+For each screen:
+1. Retrieve HTML using `mcp__stitch__get_screen_code`
+2. Generate `app/{route}/page.tsx` with the HTML as a React component
+3. Generate `package.json`, `next.config.js`, `tsconfig.json`, `app/layout.tsx`
+4. Inject the Stitch Forge signature as a JSX comment
+
+Tell the user: "Your Next.js project is in `dist/`. To run it: open a terminal, navigate to `dist/`, run `npm install`, then `npm run dev`. To deploy: push to Vercel or run `npm run build` for static export."
+
+## Step 4: Next Steps
+
+After building, suggest:
+- "Open `dist/index.html` in your browser to review" (static)
+- "If you want to refine a page, use `/forge-generate` with a specific change"
+- "To deploy, push the `dist/` folder to your hosting provider"
+
+## Guardrails
+
+- ALWAYS confirm the framework choice before building
+- ALWAYS show the route mapping before proceeding
+- NEVER output raw CLI commands without context — explain what each step does
+- If no screens exist, suggest running `/forge-generate` first

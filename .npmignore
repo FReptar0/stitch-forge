@@ -1,10 +1,16 @@
 src/
 tests/
-.claude/
+.claude/worktrees/
 .github/
 .env*
 .forgerc.json
+.forge-research/
 tsconfig.json
 vitest.config.ts
 CLAUDE.md
 coverage/
+screens/
+public/
+scripts/
+*.tgz
+.DS_Store

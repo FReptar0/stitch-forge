@@ -4,6 +4,7 @@
   "description": "Stitch Forge — CLI framework for automating web design with Google Stitch MCP",
   "type": "module",
   "bin": {
+    "stitch-forge": "./dist/index.js",
     "forge": "./dist/index.js"
   },
   "scripts": {
@@ -12,7 +13,8 @@
     "test": "vitest",
     "test:run": "vitest run",
     "lint": "eslint src/ tests/",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build && npm run test:run"
   },
   "dependencies": {
     "commander": "^12.1.0",
@@ -60,11 +62,16 @@
     "web-design",
     "cli",
     "design-system",
-    "ink"
+    "ai-design",
+    "claude-code",
+    "design-intelligence",
+    "anti-slop"
   ],
   "files": [
     "dist",
+    ".claude/skills",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "DESIGN.md"
   ]
 }
