@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tiendas 3B — Ahorro para tu familia</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #DC0C0C;
+      --secondary: #F5B800;
+      --dark: #1B2A4A;
+      --light: #FAFAF8;
+      --text: #333333;
+      --border: #E0E0E0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      color: #333333;
+      background-color: #FAFAF8;
+    }
+
+    h1, h2, h3 {
+      font-family: "Outfit", sans-serif;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: #FAFAF8;
+      border-bottom: 1px solid #E0E0E0;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    nav a {
+      color: #1B2A4A;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+    }
+
+    .hero {
+      background-image: url('hero-banner.jpg');
+      background-size: cover;
+      background-position: center;
+      padding: 6rem 2rem;
+      text-align: center;
+      color: #FAFAF8;
+      background-color: #DC0C0C;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .hero .cta {
+      display: inline-block;
+      background: #F5B800;
+      color: #1B2A4A;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .products {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .products h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #1B2A4A;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: #FFFFFF;
+      border: 1px solid #E0E0E0;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-card .info {
+      padding: 1rem;
+    }
+
+    .product-card h3 {
+      font-size: 1rem;
+      color: #1B2A4A;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-card .price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #DC0C0C;
+    }
+
+    .deals-banner {
+      background: #F5B800;
+      color: #1B2A4A;
+      text-align: center;
+      padding: 2rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    footer {
+      background-color: #1B2A4A;
+      color: #FAFAF8;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    footer a {
+      color: #F5B800;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="logo"><strong>Tiendas 3B</strong></a>
+    <div>
+      <a href="/ofertas">Ofertas</a>
+      <a href="/productos">Productos</a>
+      <a href="/tiendas">Encuentra tu tienda</a>
+      <a href="/nosotros">Nosotros</a>
+      <a href="/contacto">Contacto</a>
+    </div>
+  </nav>
+
+  <section class="hero" style="background-image: url('hero-family-shopping.jpg');">
+    <h1>Ahorro de verdad para tu familia</h1>
+    <p>Productos de calidad a los mejores precios. Encuentra tu tienda 3B m&aacute;s cercana.</p>
+    <a href="/tiendas" class="cta">Buscar tienda</a>
+  </section>
+
+  <div class="deals-banner">
+    &#127873; Ofertas de la semana — &iexcl;Hasta 40% de descuento en productos seleccionados!
+  </div>
+
+  <section class="products">
+    <h2>Productos destacados</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="product-1.jpg" alt="Aceite de oliva" />
+        <div class="info">
+          <h3>Aceite de oliva extra virgen</h3>
+          <p class="price">$45.90</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="product-2.jpg" alt="Arroz premium" />
+        <div class="info">
+          <h3>Arroz grano largo 1kg</h3>
+          <p class="price">$22.50</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="product-3.jpg" alt="Detergente" />
+        <div class="info">
+          <h3>Detergente multiusos 3L</h3>
+          <p class="price">$38.00</p>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="product-4.jpg" alt="Cereal" />
+        <div class="info">
+          <h3>Cereal integral 500g</h3>
+          <p class="price">$29.90</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Tiendas 3B. Todos los derechos reservados.</p>
+    <p><a href="/privacidad">Aviso de privacidad</a> | <a href="/terminos">T&eacute;rminos y condiciones</a></p>
+  </footer>
+</body>
+</html>

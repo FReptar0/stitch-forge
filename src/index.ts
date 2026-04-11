@@ -22,10 +22,38 @@ program
   .description('Generate a DESIGN.md from a brand brief')
   .argument('[brief...]', 'Brand brief description')
   .option('--force', 'Overwrite without confirmation')
-  .action(async (brief: string[], opts: { force?: boolean }) => {
-    const { runDesign } = await import('./commands/design.js');
-    await runDesign(brief.join(' '), opts);
+  .option('--research', 'Enable research-driven generation (same as forge discover)')
+  .action(async (brief: string[], opts: { force?: boolean; research?: boolean }) => {
+    if (opts.research) {
+      const { runDiscover } = await import('./commands/discover.js');
+      await runDiscover(brief.join(' '), { force: opts.force });
+    } else {
+      const { runDesign } = await import('./commands/design.js');
+      await runDesign(brief.join(' '), opts);
+    }
   });
+
+program
+  .command('discover')
+  .description('Research a business and generate a tailored DESIGN.md')
+  .argument('[brief...]', 'Business brief (name, industry, audience, aesthetic)')
+  .option('--force', 'Overwrite DESIGN.md without confirmation')
+  .option('-u, --url <url>', 'Business website URL')
+  .option('--competitors <urls>', 'Comma-separated competitor URLs')
+  .option('--locale <locale>', 'Target locale (e.g., es-MX)')
+  .option('--no-research', 'Skip research, use presets only')
+  .action(async (brief: string[], opts: DiscoverOptions) => {
+    const { runDiscover } = await import('./commands/discover.js');
+    await runDiscover(brief.join(' '), opts);
+  });
+
+interface DiscoverOptions {
+  force?: boolean;
+  url?: string;
+  competitors?: string;
+  locale?: string;
+  noResearch?: boolean;
+}
 
 program
   .command('generate')
