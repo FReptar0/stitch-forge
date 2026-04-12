@@ -1,4 +1,4 @@
-# Contributing to Stitch Forge
+# Contributing to Design Guard
 
 Thanks for your interest in contributing! Here's how to get started.
 
@@ -11,8 +11,8 @@ Thanks for your interest in contributing! Here's how to get started.
 ## Setup
 
 ```bash
-git clone https://github.com/freptar0/stitch-forge.git
-cd stitch-forge
+git clone https://github.com/freptar0/design-guard.git
+cd design-guard
 npm install
 cp .env.example .env
 # Add your STITCH_API_KEY to .env
@@ -47,11 +47,11 @@ npm run build       # Compile TypeScript to dist/
 
 ## Reporting Bugs
 
-Use the [bug report template](https://github.com/freptar0/stitch-forge/issues/new?template=bug_report.md) on GitHub Issues.
+Use the [bug report template](https://github.com/freptar0/design-guard/issues/new?template=bug_report.md) on GitHub Issues.
 
 ## Suggesting Features
 
-Use the [feature request template](https://github.com/freptar0/stitch-forge/issues/new?template=feature_request.md) on GitHub Issues.
+Use the [feature request template](https://github.com/freptar0/design-guard/issues/new?template=feature_request.md) on GitHub Issues.
 
 ## Code of Conduct
 

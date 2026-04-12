@@ -56,7 +56,7 @@ export class StitchMcpClient {
 
     if (!this.apiKey) {
       throw new Error(
-        'No Stitch API key found. Set STITCH_API_KEY env var or run `forge init`.'
+        'No Stitch API key found. Set STITCH_API_KEY env var or run `dg init`.'
       );
     }
   }
@@ -147,7 +147,7 @@ export class StitchMcpClient {
   private formatError(status: number, body: string): string {
     switch (status) {
       case 400: return `Stitch API: Bad request. Check your parameters. (${body.slice(0, 200)})`;
-      case 401: return 'Stitch API: Invalid API key. Run `forge init` to reconfigure.';
+      case 401: return 'Stitch API: Invalid API key. Run `dg init` to reconfigure.';
       case 403: return 'Stitch API: Access denied. Check your API key permissions.';
       case 404: return 'Stitch API: Resource not found. The project or screen may have been deleted.';
       default: return `Stitch API error (${status}): ${body.slice(0, 200)}`;
@@ -218,7 +218,7 @@ export class StitchMcpClient {
       }
     }
 
-    throw new Error('Screen was generated but could not be retrieved. Try running `forge sync` to pull screens.');
+    throw new Error('Screen was generated but could not be retrieved. Try running `dg sync` to pull screens.');
   }
 
   /** Extract screen data directly from generate_screen_from_text response */
@@ -312,7 +312,7 @@ export class StitchMcpClient {
       if (attempt < 2) await new Promise(r => setTimeout(r, (attempt + 1) * 2000));
     }
 
-    throw new Error('Could not retrieve screen HTML after 3 attempts. The screen may not be ready yet — try `forge sync` to pull screens.');
+    throw new Error('Could not retrieve screen HTML after 3 attempts. The screen may not be ready yet — try `dg sync` to pull screens.');
   }
 
   async getScreenImage(projectId: string, screenId: string): Promise<string> {

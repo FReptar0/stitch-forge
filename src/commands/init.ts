@@ -3,7 +3,7 @@ import { log } from '../utils/logger.js';
 import { saveConfig, getConfigPath, type StitchConfig } from '../utils/config.js';
 
 export async function runInit(): Promise<void> {
-  log.info('Initializing Stitch Forge project...');
+  log.info('Initializing Design Guard project...');
   log.info('');
 
   // Step 1: API Key
@@ -42,7 +42,7 @@ export async function runInit(): Promise<void> {
 
   // Step 2: Create config
   if (existsSync(getConfigPath())) {
-    log.warn('.forgerc.json already exists. Keeping current config.');
+    log.warn('.guardrc.json already exists. Keeping current config.');
   } else {
     const config: StitchConfig = {
       apiKey: apiKey || undefined,
@@ -57,8 +57,8 @@ export async function runInit(): Promise<void> {
       },
     };
     saveConfig(config);
-    log.success('Created .forgerc.json');
-    log.info('Default build framework: static (change with --framework or in .forgerc.json)');
+    log.success('Created .guardrc.json');
+    log.info('Default build framework: static (change with --framework or in .guardrc.json)');
   }
 
   // Step 3: Create .env if missing
@@ -93,10 +93,10 @@ export async function runInit(): Promise<void> {
   log.success('Project initialized!');
   log.info('');
   log.info('Next steps:');
-  log.info('  1. forge design "Company, Industry, Audience, Style"  — Create your design system');
-  log.info('  2. forge generate "A landing page for..."              — Generate a screen');
-  log.info('  3. forge build --auto                                  — Build your site');
+  log.info('  1. dg design "Company, Industry, Audience, Style"  — Create your design system');
+  log.info('  2. dg generate "A landing page for..."              — Generate a screen');
+  log.info('  3. dg build --auto                                  — Build your site');
   log.info('');
-  log.info('Or run `forge workflow` to see guided step-by-step workflows.');
-  log.info('Or run `forge tui` for the interactive terminal interface.');
+  log.info('Or run `dg workflow` to see guided step-by-step workflows.');
+  log.info('Or run `dg tui` for the interactive terminal interface.');
 }

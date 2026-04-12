@@ -1,5 +1,5 @@
 ---
-name: forge-discover
+name: dg-discover
 description: >
   Research a business and generate a tailored DESIGN.md. Use when the user
   wants to redesign a website, create a design system, or build a web
@@ -122,7 +122,7 @@ Standard anti-slop rules PLUS business-model-specific rules:
     - "Competitor differentiation: [approach]"
     - "Confidence: [X]%"
 
-11. Write DESIGN.md and save research to `.forge-research/`.
+11. Write DESIGN.md and save research to `.dg-research/`.
 
 12. Suggest first screen prompt that ALIGNS with the business model:
     - Physical retail: "A landing page with hero, store locator as primary CTA, weekly deals section, and category browse"

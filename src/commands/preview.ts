@@ -9,7 +9,7 @@ export async function runPreview(screenName?: string, opts: PreviewOptions = {})
   if (opts.all) {
     const files = listScreenFiles();
     if (files.length === 0) {
-      log.error('No screens found in screens/. Run `forge generate` first.');
+      log.error('No screens found in screens/. Run `dg generate` first.');
       process.exit(1);
     }
     await openAllScreens();
@@ -36,13 +36,13 @@ export async function runPreview(screenName?: string, opts: PreviewOptions = {})
   // No arguments: list and let user pick
   const files = listScreenFiles();
   if (files.length === 0) {
-    log.error('No screens found in screens/. Run `forge generate` first.');
+    log.error('No screens found in screens/. Run `dg generate` first.');
     process.exit(1);
   }
 
   log.info('Available screens:');
   files.forEach((s, i) => log.info(`  ${i + 1}. ${s}`));
   log.info('');
-  log.info('Usage: forge preview <screen-name>');
-  log.info('       forge preview --all');
+  log.info('Usage: dg preview <screen-name>');
+  log.info('       dg preview --all');
 }

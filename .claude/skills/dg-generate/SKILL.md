@@ -1,5 +1,5 @@
 ---
-name: forge-generate
+name: dg-generate
 description: >
   Generate a screen in Google Stitch from a text description. Use when
   the user wants to create a new web page, landing page, dashboard,
@@ -17,7 +17,7 @@ Before sending any prompt to Stitch:
 2. Verify prompt targets ONE screen only (not multiple pages)
 3. For refinements: verify ONE change only (not compound changes)
 4. Reject vague requests ("make it better", "improve it") — ask for specifics
-5. Check quota before generating: read `.forgerc.json` to see current usage
+5. Check quota before generating: read `.guardrc.json` to see current usage
 6. If DESIGN.md exists, reference it for visual consistency
 7. Flag generic terms ("modern", "clean", "professional") and suggest specific UI/UX vocabulary replacements (e.g., "asymmetric hero layout", "bento grid", "sticky nav with CTA")
 
@@ -72,6 +72,6 @@ Before sending any prompt to Stitch:
 
 10. For **inline edits** to an existing screen, use `mcp__stitch__edit_screens` instead of regenerating from scratch.
 
-11. **Next step**: Suggest "Preview with `/forge-preview` or generate another screen with `/forge-generate`"
+11. **Next step**: Suggest "Preview with `/dg-preview` or generate another screen with `/dg-generate`"
 
 Reference: See `docs/prompting-guide.md` for examples and strategies.

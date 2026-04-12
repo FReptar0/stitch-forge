@@ -855,7 +855,7 @@ function detectContentTone(text: string): SiteAnalysis['contentTone'] {
 export async function analyzeSite(url: string): Promise<SiteAnalysis | null> {
   try {
     const response = await fetch(url, {
-      headers: { 'User-Agent': 'StitchForge/0.3.0' },
+      headers: { 'User-Agent': 'DesignGuard/0.3.0' },
       signal: AbortSignal.timeout(15000),
     });
 

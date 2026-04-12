@@ -1,4 +1,4 @@
-# Stitch Forge
+# Design Guard
 
 [English](README.md) | [Español](README.es.md)
 
@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <em>Stitch Forge convierte Google Stitch en un pipeline completo de diseño a deploy.<br>
+  <em>Design Guard convierte Google Stitch en un pipeline completo de diseño a deploy.<br>
   Genera pantallas, construye sistemas de diseño y exporta a tu framework favorito — todo desde la terminal.</em>
 </p>
 
@@ -19,22 +19,22 @@
   <img src="https://img.shields.io/badge/Ink-FF4154?style=flat&logo=react&logoColor=white" alt="Ink">
   <img src="https://img.shields.io/badge/Vitest-6E9F18?style=flat&logo=vitest&logoColor=white" alt="Vitest">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT">
-  <a href="https://www.npmjs.com/package/stitch-forge"><img src="https://img.shields.io/npm/v/stitch-forge.svg?style=flat&color=6C5CE7" alt="npm"></a>
+  <a href="https://www.npmjs.com/package/design-guard"><img src="https://img.shields.io/npm/v/design-guard.svg?style=flat&color=6C5CE7" alt="npm"></a>
 </p>
 
 ---
 
 <p align="center">
-  <img src=".github/assets/hero-banner.jpg" alt="Stitch Forge — Landing page generada con IA" width="800">
+  <img src=".github/assets/hero-banner.jpg" alt="Design Guard — Landing page generada con IA" width="800">
 </p>
 
-<p align="center"><em>Esta landing page fue generada por Stitch Forge usando el pipeline completo. <a href="https://freptar0.github.io/stitch-forge/">Demo en vivo</a> · <a href=".github/assets/full-landing.jpg">Screenshot completo</a></em></p>
+<p align="center"><em>Esta landing page fue generada por Design Guard usando el pipeline completo. <a href="https://freptar0.github.io/design-guard/">Demo en vivo</a> · <a href=".github/assets/full-landing.jpg">Screenshot completo</a></em></p>
 
 ---
 
 ## Que es esto
 
-Stitch Forge envuelve la API MCP de Google Stitch en un framework CLI que maneja el ciclo completo de diseño web generado por IA:
+Design Guard envuelve la API MCP de Google Stitch en un framework CLI que maneja el ciclo completo de diseño web generado por IA:
 
 - **Investiga tu negocio** y genera un sistema de diseño a medida — el Agente de Inteligencia de Diseño entiende tu modelo de negocio antes de diseñar
 - **Crea pantallas** con prompts guiados, validacion anti-slop y guardrails integrados
@@ -43,7 +43,7 @@ Stitch Forge envuelve la API MCP de Google Stitch en un framework CLI que maneja
 - **Rastrea tu cuota** y mantente dentro de los limites mensuales de Stitch
 - **Auto-investigacion** de actualizaciones de Stitch para que tus herramientas nunca se queden obsoletas
 
-> **Hecho para Claude Code.** Stitch Forge incluye 7 skills que convierten a Claude en tu copiloto de diseño. Genera un sitio web completo sin salir de la conversacion.
+> **Hecho para Claude Code.** Design Guard incluye 7 skills que convierten a Claude en tu copiloto de diseño. Genera un sitio web completo sin salir de la conversacion.
 
 ## Funcionalidades
 
@@ -54,7 +54,7 @@ Stitch Forge envuelve la API MCP de Google Stitch en un framework CLI que maneja
 | **Generador de DESIGN.md** | Especificacion de 8 secciones con validacion estricta (colores hex, tamaños rem, patrones, reglas anti-slop) |
 | **Constructor de Prompts** | Framework zoom-out-zoom-in con guardrails: longitud, una pantalla, deteccion de vaguedad, alineacion de negocio |
 | **Validacion Anti-Slop** | Puntua HTML generado 0-100, detecta fuentes AI-default, gradientes purple-blue, jerarquia de headings |
-| **Build Multi-Framework** | Exporta a HTML estatico, Astro (via Stitch MCP) o Next.js App Router — con firma de Stitch Forge |
+| **Build Multi-Framework** | Exporta a HTML estatico, Astro (via Stitch MCP) o Next.js App Router — con firma de Design Guard |
 | **Preview en Vivo** | Abre pantallas en el navegador desde CLI, TUI, o visualiza inline en Claude Code |
 | **TUI Interactiva** | Dashboard, compositor de prompts y editor de diseño — todo en la terminal |
 | **Rastreo de Cuota** | Medidor visual para Flash (350/mes) y Pro (200/mes) |
@@ -65,38 +65,38 @@ Stitch Forge envuelve la API MCP de Google Stitch en un framework CLI que maneja
 
 ```bash
 # Instalar globalmente
-npm i -g stitch-forge
+npm i -g design-guard
 
 # O usar sin instalar
-npx stitch-forge init
+npx design-guard init
 
 # Configurar
 # Agrega tu STITCH_API_KEY de stitch.withgoogle.com > Settings > API Key
 
 # Inicializar proyecto
-forge init
+dg init
 
 # Investigar tu negocio y generar un sistema de diseño a medida
-forge discover "Tu Empresa, industria, audiencia, estetica" --url https://tusitio.com
+dg discover "Tu Empresa, industria, audiencia, estetica" --url https://tusitio.com
 
 # Generar tu primera pantalla
-forge generate "Landing page con hero, features y CTA"
+dg generate "Landing page con hero, features y CTA"
 
 # Previsualizarla
-forge preview
+dg preview
 
 # Compilar el sitio
-forge build --framework static --auto
+dg build --framework static --auto
 ```
 
 ### Desde el Codigo Fuente
 
 ```bash
-git clone https://github.com/FReptar0/stitch-forge.git
-cd stitch-forge && npm install
+git clone https://github.com/FReptar0/design-guard.git
+cd design-guard && npm install
 cp .env.example .env  # Agrega tu STITCH_API_KEY
 npm run build
-npm link  # Hace disponible el comando `forge` globalmente
+npm link  # Hace disponible el comando `dg` globalmente
 ```
 
 ## Como Funciona
@@ -127,7 +127,7 @@ Nombre del negocio o brief
     │
 ┌───▼──────────────────┐
 │  Build Framework     │  --framework static | astro | nextjs
-│  + Firma Forge       │  <!-- Built with Stitch Forge -->
+│  + Firma Guard       │  <!-- Built with Design Guard -->
 └──────────────────────┘
 ```
 
@@ -136,34 +136,34 @@ Nombre del negocio o brief
 ### Comandos CLI
 
 ```
-forge init                              Configurar proyecto, auth y MCP
-forge discover "brief..." [--url URL]  Investigar negocio + generar DESIGN.md
-forge design "brief..."                Generar DESIGN.md desde brief (modo preset)
-forge generate "descripcion..."        Generar pantalla via Stitch
-forge preview [nombre-pantalla]        Abrir pantalla en navegador (--all para todas)
-forge build --framework static         Compilar sitio (static | astro | nextjs)
-forge sync [project-id]                Sincronizar pantallas desde Stitch
-forge research                         Verificar actualizaciones de la API de Stitch
-forge workflow [redesign|new-app]      Mostrar workflow guiado paso a paso
-forge quota                            Mostrar uso de cuota de generacion
-forge tui                              Lanzar interfaz interactiva de terminal
+dg init                              Configurar proyecto, auth y MCP
+dg discover "brief..." [--url URL]  Investigar negocio + generar DESIGN.md
+dg design "brief..."                Generar DESIGN.md desde brief (modo preset)
+dg generate "descripcion..."        Generar pantalla via Stitch
+dg preview [nombre-pantalla]        Abrir pantalla en navegador (--all para todas)
+dg build --framework static         Compilar sitio (static | astro | nextjs)
+dg sync [project-id]                Sincronizar pantallas desde Stitch
+dg research                         Verificar actualizaciones de la API de Stitch
+dg workflow [redesign|new-app]      Mostrar workflow guiado paso a paso
+dg quota                            Mostrar uso de cuota de generacion
+dg tui                              Lanzar interfaz interactiva de terminal
 ```
 
 ### Skills para Claude Code
 
 ```
-/forge-discover   → Investigar negocio + generar DESIGN.md a medida (recomendado)
-/forge-design     → Generar DESIGN.md desde un brief (modo preset)
-/forge-generate   → Generar pantallas con prompts guiados + guardrails
-/forge-build      → Compilar y exportar al framework elegido
-/forge-preview    → Previsualizar pantallas inline (imagen base64 via MCP)
-/forge-research   → Verificar actualizaciones de Stitch
-/forge-sync       → Sincronizar desde un proyecto de Stitch
+/dg-discover   → Investigar negocio + generar DESIGN.md a medida (recomendado)
+/dg-design     → Generar DESIGN.md desde un brief (modo preset)
+/dg-generate   → Generar pantallas con prompts guiados + guardrails
+/dg-build      → Compilar y exportar al framework elegido
+/dg-preview    → Previsualizar pantallas inline (imagen base64 via MCP)
+/dg-research   → Verificar actualizaciones de Stitch
+/dg-sync       → Sincronizar desde un proyecto de Stitch
 ```
 
 ## Configuracion MCP
 
-Stitch Forge se conecta a Google Stitch via MCP. Agrega esto a tu `.mcp.json`:
+Design Guard se conecta a Google Stitch via MCP. Agrega esto a tu `.mcp.json`:
 
 ```json
 {
@@ -191,16 +191,16 @@ O conecta directamente a la API de Stitch:
 }
 ```
 
-> `forge init` crea este archivo automaticamente.
+> `dg init` crea este archivo automaticamente.
 
 ## Estructura del Proyecto
 
 ```
-stitch-forge/
+design-guard/
 ├── src/
 │   ├── index.ts              # Entrada CLI (commander)
 │   ├── commands/             # init, discover, design, generate, build, sync, research, preview
-│   ├── adapters/             # Adaptadores de framework (static, astro, nextjs) + firma forge
+│   ├── adapters/             # Adaptadores de framework (static, astro, nextjs) + firma Design Guard
 │   ├── tui/                  # Terminal UI con Ink (Dashboard, PromptBuilder, DesignEditor)
 │   ├── mcp/                  # Cliente MCP con retry, timeout, parsing de respuesta
 │   ├── research/             # Investigador de negocios, sintetizador de diseño, crawler, cache

@@ -23,7 +23,7 @@ export function Dashboard({ onAction }: DashboardProps) {
     return (
       <Box flexDirection="column" padding={1}>
         <Text bold color="yellow">No project configured</Text>
-        <Text>Run <Text bold>forge init</Text> to set up your project first.</Text>
+        <Text>Run <Text bold>dg init</Text> to set up your project first.</Text>
         <Text dimColor>This will create your config file and connect to Stitch.</Text>
       </Box>
     );

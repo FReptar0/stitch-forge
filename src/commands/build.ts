@@ -18,7 +18,7 @@ export async function runBuild(opts: BuildOptions): Promise<void> {
   const projectId = opts.project || config.projectId;
 
   if (!projectId) {
-    log.error('No project ID. Use --project <id> or run `forge init` first.');
+    log.error('No project ID. Use --project <id> or run `dg init` first.');
     process.exit(1);
   }
 
@@ -42,7 +42,7 @@ export async function runBuild(opts: BuildOptions): Promise<void> {
   const screens = await client.listScreens(projectId);
 
   if (screens.length === 0) {
-    log.error('No screens in project. Run `forge generate` first.');
+    log.error('No screens in project. Run `dg generate` first.');
     process.exit(1);
   }
 

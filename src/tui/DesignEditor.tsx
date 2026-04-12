@@ -71,8 +71,8 @@ export function DesignEditor({ onBack, onGenerate }: DesignEditorProps) {
           <Box marginTop={1}>
             <Text>To create one:</Text>
           </Box>
-          <Text dimColor>  Run: <Text bold>forge design "Company, Industry, Audience, Style"</Text></Text>
-          <Text dimColor>  Or use: <Text bold>/forge-design</Text> in Claude Code</Text>
+          <Text dimColor>  Run: <Text bold>dg design "Company, Industry, Audience, Style"</Text></Text>
+          <Text dimColor>  Or use: <Text bold>/dg-design</Text> in Claude Code</Text>
         </Box>
         <StatusBar hint="q: back" />
       </Box>
@@ -91,7 +91,7 @@ export function DesignEditor({ onBack, onGenerate }: DesignEditorProps) {
           <Text>{sectionContent}</Text>
         </Box>
         <Box marginTop={1}>
-          <Text dimColor>To edit this section, modify DESIGN.md directly or use /forge-design in Claude Code.</Text>
+          <Text dimColor>To edit this section, modify DESIGN.md directly or use /dg-design in Claude Code.</Text>
         </Box>
         <StatusBar hint="q: back to sections" />
       </Box>

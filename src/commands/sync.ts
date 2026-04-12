@@ -24,7 +24,7 @@ export async function runSync(projectId?: string): Promise<void> {
     for (const p of projects) {
       log.info(`  ${p.id} — ${p.name}`);
     }
-    log.info('Run: forge sync <project-id>');
+    log.info('Run: dg sync <project-id>');
     return;
   }
 

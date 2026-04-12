@@ -1,5 +1,5 @@
 ---
-name: forge-sync
+name: dg-sync
 description: >
   Sync local files with a Google Stitch project. Downloads all screens
   and updates local config. Use when the user has made changes in
@@ -30,7 +30,7 @@ Sync local files with a Google Stitch project.
 
 5. **Download each screen** using `mcp__stitch__get_screen_code` and save the HTML to `screens/[screen-name].html`.
 
-6. **Update `.forgerc.json`** with:
+6. **Update `.guardrc.json`** with:
    - `projectId`: the synced project ID
    - `screens`: array of synced screen records (id, name, lastSynced timestamp)
    - `lastSync`: current timestamp
@@ -40,6 +40,6 @@ Sync local files with a Google Stitch project.
    - Which files were created/updated in `screens/`
    - Any screens that failed to download
 
-8. **Check for design system** using `mcp__stitch__list_design_systems`. If one exists and no local DESIGN.md is found, suggest running `/forge-design` to create one.
+8. **Check for design system** using `mcp__stitch__list_design_systems`. If one exists and no local DESIGN.md is found, suggest running `/dg-design` to create one.
 
-9. **Next step**: "Run `/forge-preview` to see synced screens."
+9. **Next step**: "Run `/dg-preview` to see synced screens."

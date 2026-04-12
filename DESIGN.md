@@ -1,4 +1,4 @@
-# Stitch Forge — Design System
+# Design Guard — Design System
 
 ## 1. Visual Theme & Business Context
 
@@ -7,7 +7,7 @@ Dark futuristic terminal aesthetic with neon accents — inspired by IDE color s
 **Business Model**: Open source CLI framework — free to use, community-driven, MIT licensed.
 **Website Purpose**: Drive tool adoption (npm install / GitHub clone) and grow the open source community (GitHub stars, contributions, discussions). NOT a SaaS product — no pricing, no signup, no user accounts.
 **Primary User Goals**:
-1. Understand what Stitch Forge does in under 30 seconds
+1. Understand what Design Guard does in under 30 seconds
 2. See the workflow in action (design → generate → build)
 3. Install and start using the CLI
 4. Explore Claude Code slash commands
@@ -20,7 +20,7 @@ Dark futuristic terminal aesthetic with neon accents — inspired by IDE color s
 
 | Role | Name | Hex | Usage |
 |------|------|-----|-------|
-| Primary | Forge Purple | #6C5CE7 | CTAs, active states, key highlights, command prefixes |
+| Primary | Guard Purple | #6C5CE7 | CTAs, active states, key highlights, command prefixes |
 | Secondary | Neon Cyan | #00CEC9 | Accent links, code syntax, secondary emphasis |
 | Tertiary | Hot Pink | #FD79A8 | Badges, notifications, warning highlights |
 | Surface | Void Black | #0F0F1A | Page background, card backgrounds |
@@ -57,29 +57,29 @@ Dark futuristic terminal aesthetic with neon accents — inspired by IDE color s
 ## 5. Component Patterns
 
 ### Buttons
-- Primary: Forge Purple fill, white text, 8px radius, 14px 28px padding, subtle glow on hover
-- Secondary: transparent with 1px Forge Purple border, Forge Purple text, fill on hover
+- Primary: Guard Purple fill, white text, 8px radius, 14px 28px padding, subtle glow on hover
+- Secondary: transparent with 1px Guard Purple border, Guard Purple text, fill on hover
 - Ghost: transparent, Cloud White text, Muted background on hover
 - Install CTA: Mono font, Muted background, Neon Cyan text, copy-to-clipboard icon
 
 ### Glass Cards
 - Glass White background with `backdrop-filter: blur(12px)`, 1px border Muted, 12px radius, 24px padding
-- Hover: border shifts to Forge Purple at 30% opacity
+- Hover: border shifts to Guard Purple at 30% opacity
 - Used for features, workflow steps, command showcases
 
 ### Code Blocks
 - Muted background (#1E1E2E), JetBrains Mono font, 8px radius, 16px padding
-- Syntax highlighting: strings in Neon Cyan, keywords in Forge Purple, comments in #636381
+- Syntax highlighting: strings in Neon Cyan, keywords in Guard Purple, comments in #636381
 - Copy button top-right, Ghost style
 
 ### Terminal Mockup
 - Muted background with fake window chrome (three dots: #FF5F57, #FEBC2E, #28C840)
 - Content in JetBrains Mono with realistic command output
-- Used in hero to show the forge workflow
+- Used in hero to show the dg workflow
 
 ## 6. Iconography
 
-Lucide icons, 24px default, 1.5px stroke, outline style. Forge Purple for interactive icons, Cloud White for decorative. Use terminal-related icons: Terminal, Code, Palette, Layers, Zap, GitBranch, Package, Eye.
+Lucide icons, 24px default, 1.5px stroke, outline style. Guard Purple for interactive icons, Cloud White for decorative. Use terminal-related icons: Terminal, Code, Palette, Layers, Zap, GitBranch, Package, Eye.
 
 ## 7. Imagery Guidelines
 
@@ -92,7 +92,7 @@ Avoid: stock photos of people at computers, generic SaaS dashboard screenshots, 
 ### Do
 - Use the terminal mockup as the hero centerpiece — show the actual workflow
 - Display real CLI commands with copy-to-clipboard functionality
-- Show the slash commands (`/forge-design`, `/forge-generate`, etc.) as interactive elements
+- Show the slash commands (`/dg-design`, `/dg-generate`, etc.) as interactive elements
 - Use glassmorphism cards consistently for content sections
 - Keep the dark background throughout — no light sections
 - Use Neon Cyan for links and interactive code elements

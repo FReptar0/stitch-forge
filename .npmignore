@@ -3,8 +3,8 @@ tests/
 .claude/worktrees/
 .github/
 .env*
-.forgerc.json
-.forge-research/
+.guardrc.json
+.dg-research/
 tsconfig.json
 vitest.config.ts
 CLAUDE.md

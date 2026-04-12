@@ -67,7 +67,7 @@ export function validatePrompt(prompt: string): { valid: boolean; errors: string
     if (pattern.test(prompt)) {
       errors.push(
         'Detected multiple screens in one prompt. Generate one screen at a time — ' +
-        'run `forge generate` once per page for best results.'
+        'run `dg generate` once per page for best results.'
       );
       break;
     }

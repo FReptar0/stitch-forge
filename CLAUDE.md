@@ -1,8 +1,8 @@
-# Stitch Forge — Claude Code Development Guide
+# Design Guard — Claude Code Development Guide
 
 ## Project Overview
 
-Stitch Forge is a CLI framework that automates web page design using Google Stitch's MCP API.
+Design Guard is a CLI framework that automates web page design using Google Stitch's MCP API.
 It provides a terminal UI (TUI), prompt orchestration, DESIGN.md management,
 auto-research for tool updates, and integration with Claude Code via slash commands.
 
@@ -13,27 +13,27 @@ auto-research for tool updates, and integration with Claude Code via slash comma
 ## Architecture
 
 ```
-stitch-forge/
+design-guard/
 ├── CLAUDE.md                    # You are here
 ├── package.json
 ├── tsconfig.json
 ├── vitest.config.ts
 ├── .claude/
 │   └── commands/                # Claude Code slash commands
-│       ├── forge-design.md      # /forge-design — generate DESIGN.md from brief
-│       ├── forge-generate.md    # /forge-generate — generate screens via Stitch
-│       ├── forge-build.md       # /forge-build — map screens to routes, build site
-│       ├── forge-research.md    # /forge-research — check for Stitch updates
-│       └── forge-sync.md       # /forge-sync — pull latest from Stitch project
+│       ├── dg-design.md      # /dg-design — generate DESIGN.md from brief
+│       ├── dg-generate.md    # /dg-generate — generate screens via Stitch
+│       ├── dg-build.md       # /dg-build — map screens to routes, build site
+│       ├── dg-research.md    # /dg-research — check for Stitch updates
+│       └── dg-sync.md       # /dg-sync — pull latest from Stitch project
 ├── src/
 │   ├── index.ts                 # CLI entry point (commander + ink)
 │   ├── commands/
-│   │   ├── init.ts              # forge init — setup project, auth
-│   │   ├── design.ts            # forge design — generate/import DESIGN.md
-│   │   ├── generate.ts          # forge generate — send prompts to Stitch
-│   │   ├── build.ts             # forge build — build Astro site from screens
-│   │   ├── research.ts          # forge research — auto-update knowledge base
-│   │   └── sync.ts              # forge sync — pull project state from Stitch
+│   │   ├── init.ts              # dg init — setup project, auth
+│   │   ├── design.ts            # dg design — generate/import DESIGN.md
+│   │   ├── generate.ts          # dg generate — send prompts to Stitch
+│   │   ├── build.ts             # dg build — build Astro site from screens
+│   │   ├── research.ts          # dg research — auto-update knowledge base
+│   │   └── sync.ts              # dg sync — pull project state from Stitch
 │   ├── tui/
 │   │   ├── App.tsx              # Main Ink app component
 │   │   ├── Dashboard.tsx        # Project overview, screen list, quota usage
@@ -58,7 +58,7 @@ stitch-forge/
 │   │   ├── tools.ts             # Tool call builders (generate_screen, build_site, etc.)
 │   │   └── auth.ts              # Auth handler (API key or OAuth)
 │   └── utils/
-│       ├── config.ts            # Project config (.forgerc.json)
+│       ├── config.ts            # Project config (.guardrc.json)
 │       ├── logger.ts            # Structured logging
 │       ├── validators.ts        # Prompt length, DESIGN.md schema validation
 │       └── quota.ts             # Track generation usage against limits
@@ -88,44 +88,44 @@ stitch-forge/
 - Use `import` not `require`
 - Ink components use functional components with hooks
 - All MCP calls go through `src/mcp/client.ts`, never direct fetch
-- Config stored in `.forgerc.json` at project root
+- Config stored in `.guardrc.json` at project root
 - Logs to stderr, output to stdout
 - All user-facing strings in English (i18n not needed yet)
 
 ## Slash Commands for Claude Code
 
 These go in `.claude/commands/` and are the primary interface when using
-Stitch Forge inside Claude Code. All commands are prefixed with `forge-`
+Design Guard inside Claude Code. All commands are prefixed with `dg-`
 to clearly identify them as part of this framework.
 
-### /forge-design
+### /dg-design
 Input: Brand brief (name, industry, target audience, aesthetic adjectives)
 Action: Generate a complete DESIGN.md following the 8-section spec
 Output: Write `DESIGN.md` to project root
 
-### /forge-generate
+### /dg-generate
 Input: Screen description (page type, sections, target user)
 Action: Build prompt using zoom-out-zoom-in framework → send to Stitch MCP → receive HTML
 Output: Save HTML to `screens/[screen-name].html`, show screenshot
 
-### /forge-build
+### /dg-build
 Input: Route mapping (which screens map to which URLs)
 Action: Call `build_site` MCP tool → generate Astro project
 Output: Astro site in `dist/`
 
-### /forge-research
+### /dg-research
 Input: None (or optional topic)
 Action: Scrape Stitch docs, blog, forum → diff against known-state.json → update if changed
 Output: Report of changes, updated knowledge base files
 
-### /forge-sync
+### /dg-sync
 Input: Stitch project ID
 Action: Pull all screens, design system, project metadata from Stitch
-Output: Update local `screens/` and `.forgerc.json`
+Output: Update local `screens/` and `.guardrc.json`
 
 ## MCP Integration
 
-Stitch Forge uses `@_davideast/stitch-mcp` as the MCP server.
+Design Guard uses `@_davideast/stitch-mcp` as the MCP server.
 When running inside Claude Code, the MCP server should be configured in
 `~/.claude.json` or project-level `.mcp.json`:
 
@@ -205,7 +205,7 @@ Every DESIGN.md must contain these 8 sections:
 
 ## Prompt Guardrails
 
-Stitch Forge enforces these rules on all prompts sent to Stitch:
+Design Guard enforces these rules on all prompts sent to Stitch:
 
 1. **Max length**: 5000 characters. Reject longer prompts with suggestion to split
 2. **One screen per prompt**: Detect multi-screen intent and warn
@@ -266,7 +266,7 @@ Run single: `npm test -- --run tests/unit/prompts.test.ts`
 3. `npm run dev` — run TUI in dev mode
 4. `npm test` — run all tests
 5. `npm run build` — compile TypeScript
-6. `npm link` — make `forge` command available globally
+6. `npm link` — make `dg` command available globally
 
 ## Implementation Order
 

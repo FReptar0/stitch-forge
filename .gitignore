@@ -2,10 +2,10 @@ node_modules/
 dist/
 .env
 .env.local
-.forgerc.json
+.guardrc.json
 screens/
 coverage/
 *.tgz
 .DS_Store
 .claude/worktrees/
-.forge-research/
+.dg-research/

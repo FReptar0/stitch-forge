@@ -56,9 +56,9 @@ function App() {
     <Box flexDirection="column" padding={1}>
       <Box marginBottom={1}>
         <Text bold color="cyan">
-          ✦ Stitch Forge
+          ✦ Design Guard
         </Text>
-        <Text dimColor> v0.2.0</Text>
+        <Text dimColor> v0.3.1</Text>
       </Box>
 
       {view === 'menu' && (
@@ -100,7 +100,7 @@ function App() {
                 return (
                   <>
                     <Text color="yellow">No screens found in screens/.</Text>
-                    <Text dimColor>Run <Text bold>forge generate</Text> to create screens first.</Text>
+                    <Text dimColor>Run <Text bold>dg generate</Text> to create screens first.</Text>
                     <Box marginTop={1}>
                       <Text dimColor>Press q to go back</Text>
                     </Box>

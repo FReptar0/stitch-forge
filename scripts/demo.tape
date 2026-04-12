@@ -1,4 +1,4 @@
-# Stitch Forge CLI Demo
+# Design Guard CLI Demo
 # Run: bash scripts/demo-setup.sh
 
 Output .github/assets/demo.gif

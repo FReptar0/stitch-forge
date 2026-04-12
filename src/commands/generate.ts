@@ -25,7 +25,7 @@ export async function runGenerate(description: string, opts: GenerateOptions): P
   // Check for DESIGN.md
   const hasDesignMd = existsSync('DESIGN.md');
   if (!hasDesignMd) {
-    log.warn('No DESIGN.md found. Screens may be inconsistent. Run `forge design` first.');
+    log.warn('No DESIGN.md found. Screens may be inconsistent. Run `dg design` first.');
   }
 
   // Build prompt

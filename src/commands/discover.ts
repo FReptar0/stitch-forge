@@ -17,7 +17,7 @@ interface DiscoverOptions {
 export async function runDiscover(briefText: string, opts: DiscoverOptions): Promise<void> {
   if (!briefText.trim()) {
     log.error('Provide a business brief. Example:');
-    log.info('  forge discover "Tiendas 3B, hard-discount retail, Mexican families, confident warm" --url https://tiendas3b.com');
+    log.info('  dg discover "Tiendas 3B, hard-discount retail, Mexican families, confident warm" --url https://tiendas3b.com');
     process.exit(1);
   }
 
@@ -93,7 +93,7 @@ export async function runDiscover(briefText: string, opts: DiscoverOptions): Pro
   // Cache research
   try {
     cacheResearch(brief.companyName, research);
-    log.info('  Research cached to .forge-research/');
+    log.info('  Research cached to .dg-research/');
   } catch { /* cache failure is not critical */ }
 
   log.success(`DESIGN.md created for ${brief.companyName}`);
@@ -106,6 +106,6 @@ export async function runDiscover(briefText: string, opts: DiscoverOptions): Pro
   log.info('');
   log.info('Next steps:');
   log.info('  1. Review DESIGN.md and adjust colors/fonts if needed');
-  log.info('  2. Run `forge generate` to create your first screen');
-  log.info('  3. Or use `/forge-generate` in Claude Code');
+  log.info('  2. Run `dg generate` to create your first screen');
+  log.info('  3. Or use `/dg-generate` in Claude Code');
 }

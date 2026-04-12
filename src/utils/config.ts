@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 
-const CONFIG_FILE = '.forgerc.json';
+const CONFIG_FILE = '.guardrc.json';
 
 export interface StitchConfig {
   apiKey?: string;
@@ -59,7 +59,7 @@ export function getConfig(): StitchConfig {
     return { ...DEFAULT_CONFIG, ...JSON.parse(raw) };
   } catch (error) {
     const msg = error instanceof Error ? error.message : 'unknown error';
-    console.error(`[forge] Warning: Failed to parse ${CONFIG_FILE}: ${msg}. Using defaults.`);
+    console.error(`[dg] Warning: Failed to parse ${CONFIG_FILE}: ${msg}. Using defaults.`);
     return { ...DEFAULT_CONFIG };
   }
 }

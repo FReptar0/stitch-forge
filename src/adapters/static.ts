@@ -1,7 +1,7 @@
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import * as cheerio from 'cheerio';
-import { getForgeSignature, type Framework, type FrameworkAdapter, type BuildContext, type BuildResult } from './types.js';
+import { getGuardSignature, type Framework, type FrameworkAdapter, type BuildContext, type BuildResult } from './types.js';
 
 export class StaticAdapter implements FrameworkAdapter {
   readonly name: Framework = 'static';
@@ -23,7 +23,7 @@ export class StaticAdapter implements FrameworkAdapter {
       const filePath = this.routeToFilePath(outputDir, screen.route);
       const dir = filePath.substring(0, filePath.lastIndexOf('/'));
       mkdirSync(dir, { recursive: true });
-      writeFileSync(filePath, getForgeSignature() + $.html());
+      writeFileSync(filePath, getGuardSignature() + $.html());
       files.push(filePath);
     }
 
@@ -37,7 +37,7 @@ export class StaticAdapter implements FrameworkAdapter {
     const links = screens
       .map((s) => `<a href="${s.route === '/' ? '/index.html' : s.route + '/index.html'}" style="margin-right:1rem;">${s.name}</a>`)
       .join('\n    ');
-    return `<nav data-forge-nav style="padding:0.5rem 1rem;background:#f0f0f0;border-bottom:1px solid #ddd;display:flex;gap:0.5rem;">\n    ${links}\n  </nav>`;
+    return `<nav data-dg-nav style="padding:0.5rem 1rem;background:#f0f0f0;border-bottom:1px solid #ddd;display:flex;gap:0.5rem;">\n    ${links}\n  </nav>`;
   }
 
   private routeToFilePath(outputDir: string, route: string): string {

@@ -1,11 +1,11 @@
 {
-  "name": "stitch-forge",
+  "name": "design-guard",
   "version": "0.3.1",
-  "description": "Stitch Forge — CLI framework for automating web design with Google Stitch MCP",
+  "description": "Design Guard — CLI framework for automating web design with Google Stitch MCP",
   "type": "module",
   "bin": {
-    "stitch-forge": "./dist/index.js",
-    "forge": "./dist/index.js"
+    "design-guard": "./dist/index.js",
+    "dg": "./dist/index.js"
   },
   "scripts": {
     "dev": "tsx src/index.ts tui",
@@ -49,13 +49,16 @@
   "author": "Fernando Rodriguez Memije <hi@fernandomemije.dev> (https://fernandomemije.dev)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/freptar0/stitch-forge.git"
+    "url": "https://github.com/freptar0/design-guard.git"
   },
-  "homepage": "https://github.com/freptar0/stitch-forge#readme",
+  "homepage": "https://github.com/freptar0/design-guard#readme",
   "bugs": {
-    "url": "https://github.com/freptar0/stitch-forge/issues"
+    "url": "https://github.com/freptar0/design-guard/issues"
   },
   "keywords": [
+    "design-guard",
+    "design-quality",
+    "design-lint",
     "stitch",
     "google-stitch",
     "mcp",

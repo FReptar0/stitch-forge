@@ -1,5 +1,5 @@
 ---
-name: forge-design
+name: dg-design
 description: >
   Generate a DESIGN.md from a brand brief. Use when the user wants to
   create a visual identity, design system, or brand style guide for a
@@ -59,6 +59,6 @@ Generate a complete DESIGN.md for a web project using Google Stitch.
    - Or update an existing one with `mcp__stitch__update_design_system`
    - Apply it to the project with `mcp__stitch__apply_design_system` so all future generations respect it
 
-7. **Next step**: Suggest running `/forge-generate` to create the first screen using the new design system.
+7. **Next step**: Suggest running `/dg-generate` to create the first screen using the new design system.
 
 Reference: See `docs/design-md-guide.md` for the full specification.

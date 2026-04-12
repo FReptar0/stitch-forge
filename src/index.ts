@@ -5,13 +5,13 @@ import { Command } from 'commander';
 const program = new Command();
 
 program
-  .name('forge')
-  .description('Stitch Forge — CLI framework for automating web design with Google Stitch')
-  .version('0.2.0');
+  .name('dg')
+  .description('Design Guard — CLI framework for automating web design with Google Stitch')
+  .version('0.3.1');
 
 program
   .command('init')
-  .description('Setup project: authenticate and create .forgerc.json')
+  .description('Setup project: authenticate and create .guardrc.json')
   .action(async () => {
     const { runInit } = await import('./commands/init.js');
     await runInit();
@@ -22,7 +22,7 @@ program
   .description('Generate a DESIGN.md from a brand brief')
   .argument('[brief...]', 'Brand brief description')
   .option('--force', 'Overwrite without confirmation')
-  .option('--research', 'Enable research-driven generation (same as forge discover)')
+  .option('--research', 'Enable research-driven generation (same as dg discover)')
   .action(async (brief: string[], opts: { force?: boolean; research?: boolean }) => {
     if (opts.research) {
       const { runDiscover } = await import('./commands/discover.js');

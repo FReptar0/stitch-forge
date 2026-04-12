@@ -1,5 +1,5 @@
 ---
-name: forge-research
+name: dg-research
 description: >
   Check for Google Stitch updates and refresh the local knowledge base.
   Use when the user asks "what's new with Stitch", "are there any updates",

@@ -1,5 +1,5 @@
 ---
-name: forge-build
+name: dg-build
 description: >
   Build a deployable site from generated Stitch screens. Use when the user
   wants to export, ship, publish, or turn their screens into a real website.
@@ -18,7 +18,7 @@ Present these options to the user before doing anything else:
 | **astro** | Content sites, blogs | Astro project via Stitch MCP `build_site` tool |
 | **nextjs** | Apps, dynamic sites | Next.js App Router project with static export |
 
-Check `.forgerc.json` for a saved `framework` preference. If set, confirm with the user: "Your config prefers [framework]. Use that, or choose a different one?"
+Check `.guardrc.json` for a saved `framework` preference. If set, confirm with the user: "Your config prefers [framework]. Use that, or choose a different one?"
 
 ## Step 2: Select Project & Screens
 
@@ -45,7 +45,7 @@ For each screen:
 1. Retrieve HTML using `mcp__stitch__get_screen_code` (or `mcp__stitch__get_screen` + download URL)
 2. Save to `dist/{route}/index.html`
 3. Inject shared navigation at the top of each page
-4. Inject the Stitch Forge signature comment: `<!-- Built with Stitch Forge -->`
+4. Inject the Design Guard signature comment: `<!-- Built with Design Guard -->`
 
 Tell the user: "Your site is in the `dist/` folder. Open `dist/index.html` in your browser to preview. To deploy to GitHub Pages, push the `dist/` folder. For Netlify/Vercel, point to the `dist/` directory."
 
@@ -60,7 +60,7 @@ For each screen:
 1. Retrieve HTML using `mcp__stitch__get_screen_code`
 2. Generate `app/{route}/page.tsx` with the HTML as a React component
 3. Generate `package.json`, `next.config.js`, `tsconfig.json`, `app/layout.tsx`
-4. Inject the Stitch Forge signature as a JSX comment
+4. Inject the Design Guard signature as a JSX comment
 
 Tell the user: "Your Next.js project is in `dist/`. To run it: open a terminal, navigate to `dist/`, run `npm install`, then `npm run dev`. To deploy: push to Vercel or run `npm run build` for static export."
 
@@ -68,7 +68,7 @@ Tell the user: "Your Next.js project is in `dist/`. To run it: open a terminal, 
 
 After building, suggest:
 - "Open `dist/index.html` in your browser to review" (static)
-- "If you want to refine a page, use `/forge-generate` with a specific change"
+- "If you want to refine a page, use `/dg-generate` with a specific change"
 - "To deploy, push the `dist/` folder to your hosting provider"
 
 ## Guardrails
@@ -76,4 +76,4 @@ After building, suggest:
 - ALWAYS confirm the framework choice before building
 - ALWAYS show the route mapping before proceeding
 - NEVER output raw CLI commands without context — explain what each step does
-- If no screens exist, suggest running `/forge-generate` first
+- If no screens exist, suggest running `/dg-generate` first

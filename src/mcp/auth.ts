@@ -11,7 +11,7 @@ export interface AuthConfig {
 
 /**
  * Resolve authentication for Stitch MCP.
- * Priority: env var > .env file > .forgerc.json > none
+ * Priority: env var > .env file > .guardrc.json > none
  */
 export function resolveAuth(): AuthConfig {
   // 1. Environment variable
@@ -38,8 +38,8 @@ export function resolveAuth(): AuthConfig {
     }
   }
 
-  // 3. .forgerc.json
-  const rcPath = join(process.cwd(), '.forgerc.json');
+  // 3. .guardrc.json
+  const rcPath = join(process.cwd(), '.guardrc.json');
   if (existsSync(rcPath)) {
     try {
       const rc = JSON.parse(readFileSync(rcPath, 'utf-8'));

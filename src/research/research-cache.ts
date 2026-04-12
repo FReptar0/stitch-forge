@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 import type { BusinessResearchResult, SiteAnalysis } from './types.js';
 
-const CACHE_DIR = '.forge-research';
+const CACHE_DIR = '.dg-research';
 const CACHE_TTL_DAYS = 7;
 
 function ensureCacheDir(): string {

@@ -11,7 +11,7 @@ export async function runWorkflow(type?: string): Promise<void> {
     log.info('  new-app    — Build a new app from scratch');
     log.info('               Start with brainstorming, then refine and build.');
     log.info('');
-    log.info('Usage: forge workflow <redesign|new-app>');
+    log.info('Usage: dg workflow <redesign|new-app>');
     return;
   }
 
@@ -38,5 +38,5 @@ export async function runWorkflow(type?: string): Promise<void> {
     log.info('');
   }
 
-  log.info('Tip: Use the TUI (`forge tui`) for a guided interactive experience.');
+  log.info('Tip: Use the TUI (`dg tui`) for a guided interactive experience.');
 }

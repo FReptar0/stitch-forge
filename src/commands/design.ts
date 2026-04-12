@@ -18,7 +18,7 @@ export async function runDesign(briefText: string, opts?: { force?: boolean }): 
 
   if (!briefText.trim()) {
     log.error('Provide a brand brief. Example:');
-    log.info('  forge design "Acme Corp, SaaS platform, startups, modern minimal"');
+    log.info('  dg design "Acme Corp, SaaS platform, startups, modern minimal"');
     process.exit(1);
   }
 

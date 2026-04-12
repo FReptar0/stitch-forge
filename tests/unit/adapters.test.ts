@@ -69,7 +69,7 @@ describe('StaticAdapter', () => {
     // Each written file should contain the nav
     for (const call of writeFileSync.mock.calls) {
       const html = call[1] as string;
-      expect(html).toContain('data-forge-nav');
+      expect(html).toContain('data-dg-nav');
       expect(html).toContain('Homepage');
       expect(html).toContain('About');
       expect(html).toContain('Pricing');
