@@ -12,6 +12,14 @@ Generate a complete DESIGN.md for a web project using Google Stitch.
 
 ## Instructions
 
+0. **Discover check (MUST run before anything else)**:
+   - Check if the `.dg-research/` directory exists and contains JSON files.
+   - IF `.dg-research/` does NOT exist AND the user has mentioned a specific business name, company, brand, cafe, restaurant, store, or real-world entity:
+     - STOP. Tell the user: "I recommend running `/dg-discover` first to research [business name]. This produces a DESIGN.md grounded in real market and competitor data instead of AI defaults. Would you like me to run `/dg-discover` instead?"
+     - Only proceed with `/dg-design` if the user explicitly says to skip research.
+   - IF `.dg-research/` exists with JSON files: proceed to step 1, using the research data as context for DESIGN.md generation. Read `.dg-research/latest.json` to get the business brief, competitor analysis, and brand colors.
+   - IF the user request is generic (no specific business mentioned, e.g., "make a portfolio site" or "create a SaaS dashboard"): proceed directly to step 1. Research is for real businesses, not generic projects.
+
 1. If the user provided a brand brief as argument, use it. Otherwise ask for:
    - Company/product name
    - Industry or domain
