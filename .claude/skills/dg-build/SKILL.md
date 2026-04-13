@@ -38,7 +38,37 @@ Rules:
 - Others map to `/{screen-name-lowercase}`
 - Ask if the user wants to adjust any routes
 
-## Step 3: Build
+## Step 3: Pre-Build Quality Gate
+
+Before building, run the quality gate on ALL screens that will be included:
+
+1. For each screen, run `npx dg lint screens/{name}.html --format json 2>/dev/null` to get per-screen lint scores.
+2. Check `evaluations/{name}.eval.md` for deep evaluation scores (if available).
+3. Display a summary table:
+
+```
+Pre-Build Quality Gate
+Screen              Lint    Eval    Status
+Landing Page        82/100  71/100  PASS
+About Us            65/100  --      WARN (not evaluated)
+Pricing             35/100  28/100  FAIL
+```
+
+4. Apply thresholds:
+   - **PASS** (green): Lint >= 70 and Eval >= 50 (or no eval yet)
+   - **WARN** (yellow): Lint 50-69 or Eval 50-69 — warn but allow build
+   - **FAIL** (red): Lint < 50 or Eval < 40 — block build for this screen
+
+5. If ANY screen is FAIL:
+   - Show the specific issues from lint output
+   - Suggest: "Run `/dg-generate` with refinements to fix [screen]. Then `/dg-evaluate` to verify."
+   - Ask: "Build anyway without the failing screen(s), or fix first?"
+
+6. If screens are WARN but none FAIL:
+   - Note the warnings but proceed with build
+   - Suggest running `/dg-evaluate` on unevaluated screens after build
+
+## Step 4: Build
 
 ### Static HTML
 For each screen:
@@ -64,7 +94,7 @@ For each screen:
 
 Tell the user: "Your Next.js project is in `dist/`. To run it: open a terminal, navigate to `dist/`, run `npm install`, then `npm run dev`. To deploy: push to Vercel or run `npm run build` for static export."
 
-## Step 4: Validate Output Quality
+## Step 5: Post-Build Validation
 
 After building, run `dg lint` against the generated HTML to check for AI slop patterns, accessibility issues, and design system adherence:
 
@@ -76,7 +106,7 @@ If the lint score is below 60 for any page, inform the user which files need att
 
 For CI/CD pipelines, suggest the JSON format: `dg lint dist/ --format json --fail-on-error`
 
-## Step 5: Next Steps
+## Step 6: Next Steps
 
 After building and validating, suggest:
 - "Open `dist/index.html` in your browser to review" (static)

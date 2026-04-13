@@ -2,7 +2,7 @@
  * Rule registry -- manages all lint rules.
  *
  * Rules are individually testable, configurable, and extensible.
- * 18 total rules: 8 original (with bug fixes) + 10 new slop detection.
+ * 23 total rules: 8 original (with bug fixes) + 15 slop detection.
  */
 
 import type { LintRule } from './types.js';
@@ -24,6 +24,11 @@ import { noDivSoup } from './no-div-soup.js';
 import { noMissingMeta } from './no-missing-meta.js';
 import { noGenericHero } from './no-generic-hero.js';
 import { noPlaceholderImages } from './no-placeholder-images.js';
+import { noUniformGlass } from './no-uniform-glass.js';
+import { noSideTabBorders } from './no-side-tab-borders.js';
+import { noIdenticalCards } from './no-identical-cards.js';
+import { noAllButtonsPrimary } from './no-all-buttons-primary.js';
+import { noPureBlackBg } from './no-pure-black-bg.js';
 
 export type { LintRule, LintContext } from './types.js';
 
@@ -49,6 +54,11 @@ const ALL_RULES: LintRule[] = [
   noMissingMeta,
   noGenericHero,
   noPlaceholderImages,
+  noUniformGlass,
+  noSideTabBorders,
+  noIdenticalCards,
+  noAllButtonsPrimary,
+  noPureBlackBg,
 ];
 
 /**

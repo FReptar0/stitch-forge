@@ -18,27 +18,47 @@ const SYSTEM_ONLY_FONTS = ['system-ui', '-apple-system', 'BlinkMacSystemFont'];
 function isIntentionalFont(fontName: string, designMdContent?: string): boolean {
   if (!designMdContent) return false;
 
-  // Extract Section 3 (Typography) content between ## 3. and the next ## heading
+  const declared = getDeclaredFonts(designMdContent);
+  return declared.some(d => d.name.toLowerCase() === fontName.toLowerCase());
+}
+
+interface DeclaredFont {
+  role: string;   // e.g. "Heading", "Body", "Mono"
+  name: string;   // e.g. "Space Grotesk", "DM Sans"
+}
+
+/**
+ * Extract font declarations from DESIGN.md Section 3.
+ */
+function getDeclaredFonts(designMdContent: string): DeclaredFont[] {
   const section3Match = designMdContent.match(/##\s*3\..*?Typography[\s\S]*?(?=##\s*\d+\.|$)/i);
-  if (!section3Match) return false;
+  if (!section3Match) return [];
   const section3 = section3Match[0];
 
-  // Look for font-family declarations like: **Heading**: "Space Grotesk", sans-serif
-  const fontDeclarations = section3.match(
-    /(?:\*\*(?:Heading|Body|Mono|Display|Caption|Code)\*\*\s*:\s*)(["']?)([^,"'\n]+)\1/gi,
-  ) || [];
-
-  for (const decl of fontDeclarations) {
-    const nameMatch = decl.match(/:\s*["']?([^,"'\n]+)["']?/);
-    if (nameMatch) {
-      const declaredFont = nameMatch[1].trim();
-      if (declaredFont.toLowerCase() === fontName.toLowerCase()) {
-        return true;
-      }
-    }
+  const fonts: DeclaredFont[] = [];
+  const declRegex = /\*\*(Heading|Body|Mono|Display|Caption|Code)\*\*\s*:\s*["']?([^,"'\n]+)["']?/gi;
+  let match;
+  while ((match = declRegex.exec(section3)) !== null) {
+    fonts.push({ role: match[1], name: match[2].trim() });
   }
+  return fonts;
+}
 
-  return false;
+/**
+ * Get the DESIGN.md-specified font for a given role, for better error messages.
+ */
+function getSpecifiedFontMessage(fontName: string, designMdContent?: string): string {
+  if (!designMdContent) return `Detected "${fontName}" font — common AI default. Specify a custom typeface for brand identity.`;
+
+  const declared = getDeclaredFonts(designMdContent);
+  if (declared.length === 0) return `Detected "${fontName}" font — common AI default. Specify a custom typeface for brand identity.`;
+
+  // Find the best matching role for the font usage context
+  const bodyFont = declared.find(d => /body/i.test(d.role));
+  const headingFont = declared.find(d => /heading|display/i.test(d.role));
+  const primary = bodyFont || headingFont || declared[0];
+
+  return `Detected "${fontName}" font — DESIGN.md specifies "${primary.name}" (${primary.role}), not "${fontName}".`;
 }
 
 /**
@@ -65,7 +85,7 @@ export const noDefaultFonts: LintRule = {
         issues.push({
           type: 'warning',
           category: 'slop',
-          message: `Detected "${font}" font — common AI default. Consider a more distinctive typeface.`,
+          message: getSpecifiedFontMessage(font, designMdContent),
         });
       }
     }
@@ -79,7 +99,7 @@ export const noDefaultFonts: LintRule = {
           issues.push({
             type: 'warning',
             category: 'slop',
-            message: `Google Fonts link loads "${font}" — common AI default. Consider a more distinctive typeface.`,
+            message: `Google Fonts link loads "${font}" — ${designMdContent ? getSpecifiedFontMessage(font, designMdContent).replace(/^Detected "[^"]+" font — /, '') : 'common AI default. Specify a custom typeface for brand identity.'}`,
           });
         }
       }

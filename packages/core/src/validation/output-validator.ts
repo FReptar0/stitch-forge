@@ -82,6 +82,24 @@ function computeBreakdown(
   return breakdown;
 }
 
+function computeWeightedScore(
+  breakdown: ScoringBreakdown,
+  rulesRanByCategory: Map<IssueCategory, number>,
+): number {
+  let totalWeight = 0;
+  let weightedSum = 0;
+
+  for (const cat of ALL_CATEGORIES) {
+    const weight = rulesRanByCategory.get(cat) ?? 0;
+    if (weight > 0) {
+      totalWeight += weight;
+      weightedSum += breakdown[cat].score * weight;
+    }
+  }
+
+  return totalWeight > 0 ? Math.round(weightedSum / totalWeight) : 100;
+}
+
 // ---------------------------------------------------------------------------
 // Main validator
 // ---------------------------------------------------------------------------
@@ -148,16 +166,14 @@ export function validateOutput(html: string, designMdPath?: string): OutputValid
     ? Math.round((rulesChecked / totalRulesAvailable) * 100)
     : 0;
 
-  // Calculate overall score
-  const errorCount = allIssues.filter(i => i.type === 'error').length;
-  const warningCount = allIssues.filter(i => i.type === 'warning').length;
-  const infoCount = allIssues.filter(i => i.type === 'info').length;
-  const score = Math.max(
-    0,
-    100 - (errorCount * DEDUCTION.error) - (warningCount * DEDUCTION.warning) - (infoCount * DEDUCTION.info),
-  );
-
   const breakdown = computeBreakdown(allIssues, rulesRanByCategory);
+
+  // Calculate overall score as weighted average of category scores.
+  // Each category is weighted by the number of rules that ran in it,
+  // so categories with more rules have more influence on the final score.
+  // This prevents the floor effect where many small issues across
+  // categories would compound into 0/100 despite reasonable per-category scores.
+  const score = computeWeightedScore(breakdown, rulesRanByCategory);
 
   return {
     score,

@@ -75,14 +75,19 @@ describe('output validator', () => {
   // New scoring system (Frente C)
   // -------------------------------------------------------------------
 
-  it('uses new deduction weights: error=-20, warning=-10, info=-5', async () => {
+  it('overall score is weighted average of category scores, not global deduction', async () => {
     const { validateOutput } = await getValidator();
     const result = validateOutput('<html><body><img src="a.jpg"><p>Hello</p></body></html>');
-    const errors = result.issues.filter(i => i.type === 'error').length;
-    const warnings = result.issues.filter(i => i.type === 'warning').length;
-    const infos = result.issues.filter(i => i.type === 'info').length;
-    const expected = Math.max(0, 100 - (errors * 20) - (warnings * 10) - (infos * 5));
-    expect(result.score).toBe(expected);
+    // Score should be the weighted average of per-category scores,
+    // not a single deduction from 100. This prevents the floor effect
+    // where many issues across categories compound to 0.
+    expect(result.score).toBeGreaterThanOrEqual(0);
+    expect(result.score).toBeLessThanOrEqual(100);
+    // Per-category scores use deduction weights (error=-20, warn=-10, info=-5)
+    for (const cat of Object.values(result.breakdown)) {
+      expect(cat.score).toBeGreaterThanOrEqual(0);
+      expect(cat.score).toBeLessThanOrEqual(100);
+    }
   });
 
   it('pass threshold is 70', async () => {

@@ -54,7 +54,12 @@ Before sending any prompt to Stitch:
 
 5. **After generation**, retrieve the screen code and save the HTML to `screens/[screen-name].html`.
 
-6. **Post-generation quality check**: Run `npx dg lint screens/[screen-name].html` to get the static lint score. If the score is below 70, review the issues and fix them before presenting to the user. The anti-slop rules in `.claude/rules/` should have prevented most issues, but Stitch output is not influenced by rules — always lint Stitch-generated HTML.
+6. **Post-generation quality gate**: After saving the HTML, run the `dg-critic` agent to check quality:
+   - The critic runs static lint + 5 quick pattern checks (identical cards, gradient text, button hierarchy, palette compliance, content truth).
+   - If the critic returns **FAIL**: show the issues, attempt one automatic fix pass using the critic's suggestions as a refinement prompt, then re-lint. If still failing, present both versions to the user with the issues noted.
+   - If the critic returns **WARN**: show the warnings but proceed to preview.
+   - If the critic returns **PASS**: proceed to preview.
+   - The anti-slop rules in `.claude/rules/` prevent issues in Claude-generated HTML, but Stitch output is NOT influenced by rules — the critic catches what rules cannot.
 
 7. **Preview the screen** after saving:
    - Call `mcp__stitch__get_screen_image` with the project ID and screen ID to get a base64 PNG.
@@ -74,6 +79,10 @@ Before sending any prompt to Stitch:
 
 11. For **inline edits** to an existing screen, use `mcp__stitch__edit_screens` instead of regenerating from scratch.
 
-12. **Next step**: Suggest "Preview with `/dg-preview`, evaluate design quality with `/dg-evaluate`, or generate another screen with `/dg-generate`"
+12. **Next step**: Based on the critic verdict, provide context-aware guidance:
+    - **If PASS**: "Screen passes quality gate. Preview with `/dg-preview`, deep-evaluate with `/dg-evaluate`, or generate another screen."
+    - **If WARN**: "Screen has minor issues. Run `/dg-evaluate` for detailed analysis, or refine with `/dg-generate` targeting the flagged issues."
+    - **If FAIL**: "Screen needs work. Use the suggested refinement prompt above, or run `/dg-evaluate` for a full breakdown."
+    - Always show quota status: "Quota: Flash {used}/{limit}, Pro {used}/{limit}"
 
 Reference: See `docs/prompting-guide.md` for examples and strategies.
