@@ -17,8 +17,34 @@ Generate a complete DESIGN.md for a web project using Google Stitch.
    - IF `.dg-research/` does NOT exist AND the user has mentioned a specific business name, company, brand, cafe, restaurant, store, or real-world entity:
      - STOP. Tell the user: "I recommend running `/dg-discover` first to research [business name]. This produces a DESIGN.md grounded in real market and competitor data instead of AI defaults. Would you like me to run `/dg-discover` instead?"
      - Only proceed with `/dg-design` if the user explicitly says to skip research.
-   - IF `.dg-research/` exists with JSON files: proceed to step 1, using the research data as context for DESIGN.md generation. Read `.dg-research/latest.json` to get the business brief, competitor analysis, and brand colors.
+   - IF `.dg-research/` exists with JSON files: Read `.dg-research/latest.json` to get the business brief, competitor analysis, and brand colors. This research data is your PRIMARY source for business context -- use it over any project-level context from CLAUDE.md. Proceed to step 1.
    - IF the user request is generic (no specific business mentioned, e.g., "make a portfolio site" or "create a SaaS dashboard"): proceed directly to step 1. Research is for real businesses, not generic projects.
+
+### Context Isolation (CRITICAL -- read before generating)
+
+When generating a DESIGN.md, distinguish between two contexts:
+
+1. **Host project** -- the codebase you are running inside (Design Guard). CLAUDE.md
+   describes THIS project. Its business model, features, CLI commands, test counts,
+   and technical architecture are about Design Guard, NOT about the user's target business.
+
+2. **Target business** -- the business the user wants a DESIGN.md for. This comes from:
+   - The brand brief the user provides (Step 1)
+   - Research data in `.dg-research/latest.json` (if available from /dg-discover -- this is your PRIMARY source)
+   - WebSearch/WebFetch results about the target business
+
+**Rules:**
+- IF the target business is DIFFERENT from Design Guard:
+  - Do NOT use business descriptions, feature lists, stats, or technical details from CLAUDE.md
+  - Do NOT reference CLI commands, test counts, TypeScript, Node.js, MCP, or Stitch as features of the target business
+  - Do NOT describe the target as "open source", "design intelligence", or any phrase from CLAUDE.md's Project Overview
+  - Every business fact in the DESIGN.md must come from the user's brief or research data
+  - If an existing DESIGN.md is present at the project root, do NOT copy its colors, fonts, or business context into the new one -- generate fresh from the brief and research
+
+- IF the target business IS Design Guard itself:
+  - CLAUDE.md is a valid source of business context -- use it alongside the user's brief
+
+- ALWAYS follow the DESIGN.md 8-section specification and validation rules from CLAUDE.md regardless of target business. The FORMAT rules always apply; the BUSINESS context is what gets isolated.
 
 1. If the user provided a brand brief as argument, use it. Otherwise ask for:
    - Company/product name
