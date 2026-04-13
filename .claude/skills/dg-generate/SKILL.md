@@ -54,24 +54,26 @@ Before sending any prompt to Stitch:
 
 5. **After generation**, retrieve the screen code and save the HTML to `screens/[screen-name].html`.
 
-6. **Preview the screen** after saving:
+6. **Post-generation quality check**: Run `npx dg lint screens/[screen-name].html` to get the static lint score. If the score is below 70, review the issues and fix them before presenting to the user. The anti-slop rules in `.claude/rules/` should have prevented most issues, but Stitch output is not influenced by rules — always lint Stitch-generated HTML.
+
+7. **Preview the screen** after saving:
    - Call `mcp__stitch__get_screen_image` with the project ID and screen ID to get a base64 PNG.
    - Display the image inline so the user can see the result immediately.
 
-7. For **refinements**, use this structure (one change at a time):
+8. For **refinements**, use this structure (one change at a time):
    ```
    On the [specific section] of [screen name], [specific change]:
    - [Detail 1]
    - [Detail 2]
    ```
 
-8. If generating multiple screens for a project, prefix subsequent prompts with:
+9. If generating multiple screens for a project, prefix subsequent prompts with:
    "Following the same design language as the homepage..."
 
-9. For **variants**, offer to call `mcp__stitch__generate_variants` to produce 2-3 alternative designs the user can compare before committing to one direction.
+10. For **variants**, offer to call `mcp__stitch__generate_variants` to produce 2-3 alternative designs the user can compare before committing to one direction.
 
-10. For **inline edits** to an existing screen, use `mcp__stitch__edit_screens` instead of regenerating from scratch.
+11. For **inline edits** to an existing screen, use `mcp__stitch__edit_screens` instead of regenerating from scratch.
 
-11. **Next step**: Suggest "Preview with `/dg-preview` or generate another screen with `/dg-generate`"
+12. **Next step**: Suggest "Preview with `/dg-preview`, evaluate design quality with `/dg-evaluate`, or generate another screen with `/dg-generate`"
 
 Reference: See `docs/prompting-guide.md` for examples and strategies.
