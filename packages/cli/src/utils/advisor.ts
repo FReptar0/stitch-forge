@@ -31,6 +31,16 @@ function designMdExists(): boolean {
   return existsSync(join(process.cwd(), 'DESIGN.md'));
 }
 
+/**
+ * Check whether business research has been completed.
+ * Returns true only if `.dg-research/` exists AND contains at least one JSON file.
+ */
+export function researchExists(): boolean {
+  const dir = join(process.cwd(), '.dg-research');
+  if (!existsSync(dir)) return false;
+  return readdirSync(dir).some(f => f.endsWith('.json'));
+}
+
 function getScreenFiles(): string[] {
   const dir = join(process.cwd(), 'screens');
   if (!existsSync(dir)) return [];
@@ -88,12 +98,20 @@ export function getAdvisorReport(): AdvisorReport {
     });
   }
 
-  // 2. DESIGN.md check
+  // 2. DESIGN.md check (research-aware)
   const hasDesign = designMdExists();
-  if (!hasDesign) {
+  const hasResearch = researchExists();
+
+  if (!hasDesign && !hasResearch) {
     hints.push({
       level: 'blocker',
-      message: 'DESIGN.md missing — screens will use AI defaults instead of your brand',
+      message: 'No business research found. Run /dg-discover to research the business before designing.',
+      action: '/dg-discover',
+    });
+  } else if (!hasDesign && hasResearch) {
+    hints.push({
+      level: 'blocker',
+      message: 'DESIGN.md missing. Research exists — run /dg-design to generate from existing research.',
       action: '/dg-design',
     });
   } else {
