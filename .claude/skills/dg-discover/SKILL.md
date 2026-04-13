@@ -35,6 +35,16 @@ Before ANY research or generation, establish these fundamentals:
 
 If the user provides a detailed brief, extract answers from it. But if any critical info is missing (especially #1 and #3), ASK before proceeding. Do NOT assume.
 
+### Context Isolation
+
+You are researching a specific target business, NOT the host project (Design Guard).
+
+- CLAUDE.md describes how Design Guard works as a development tool. It does NOT describe the target business. Do not confuse the two.
+- All research findings, business model analysis, and audience insights must be about the target business, not about Design Guard.
+- When saving to `.dg-research/latest.json`, the `brief.companyName` field MUST match the target business name, never "Design Guard" (unless the user explicitly asked to research Design Guard itself).
+- If you are unsure whether a fact comes from the target business or from CLAUDE.md project context, discard it and research again using WebSearch.
+- Do NOT describe the target business as "open source", "CLI tool", "design intelligence", or any other phrase from CLAUDE.md's Project Overview.
+
 ## Phase 2: Research (autonomous)
 
 Once you have the basics, research to validate and enrich:
