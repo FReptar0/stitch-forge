@@ -13,19 +13,16 @@ DESIGN.md management, multi-generator support, and integration with Claude Code 
 ## Architecture
 
 ```
-stitch-forge/                        # Monorepo root (npm workspaces)
+design-guard/                        # Monorepo root (npm workspaces)
 ├── CLAUDE.md                        # You are here
 ├── package.json                     # Workspace root — delegates to packages
 ├── tsconfig.json                    # Project references (core + cli)
 ├── tsconfig.base.json               # Shared TypeScript compiler options
 ├── .claude/
-│   ├── commands/                    # Claude Code slash commands
-│   │   ├── forge-design.md
-│   │   ├── forge-generate.md
-│   │   ├── forge-build.md
-│   │   ├── forge-research.md
-│   │   └── forge-sync.md
-│   └── skills/                      # Claude Code skills
+│   ├── agents/                      # Claude Code custom agents
+│   │   └── dg-critic.md             # Post-generation quality gate agent
+│   ├── rules/                       # Anti-slop design rules
+│   └── skills/                      # Claude Code skills (dg-* prefix)
 ├── packages/
 │   ├── core/                        # @design-guard/core — design intelligence library
 │   │   ├── package.json
@@ -54,15 +51,15 @@ stitch-forge/                        # Monorepo root (npm workspaces)
 │       └── src/
 │           ├── index.ts             # CLI entry point (commander + ink)
 │           ├── commands/
-│           │   ├── init.ts          # forge init — setup project, auth
-│           │   ├── design.ts        # forge design — generate/import DESIGN.md
-│           │   ├── discover.ts      # forge discover — research + synthesize DESIGN.md
-│           │   ├── generate.ts      # forge generate — send prompts to Stitch
-│           │   ├── build.ts         # forge build — build Astro site from screens
-│           │   ├── preview.ts       # forge preview — local preview server
-│           │   ├── research.ts      # forge research — auto-update knowledge base
-│           │   ├── sync.ts          # forge sync — pull project state from Stitch
-│           │   └── workflow.ts      # forge workflow — multi-step workflows
+│           │   ├── init.ts          # dg init — setup project, auth
+│           │   ├── design.ts        # dg design — generate/import DESIGN.md
+│           │   ├── discover.ts      # dg discover — research + synthesize DESIGN.md
+│           │   ├── generate.ts      # dg generate — send prompts to Stitch
+│           │   ├── build.ts         # dg build — build Astro site from screens
+│           │   ├── preview.ts       # dg preview — local preview server
+│           │   ├── research.ts      # dg research — auto-update knowledge base
+│           │   ├── sync.ts          # dg sync — pull project state from Stitch
+│           │   └── workflow.ts      # dg workflow — multi-step workflows
 │           ├── tui/
 │           │   ├── App.tsx          # Main Ink app component
 │           │   ├── Dashboard.tsx    # Project overview, screen list, quota usage
