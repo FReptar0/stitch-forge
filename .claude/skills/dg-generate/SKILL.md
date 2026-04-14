@@ -5,7 +5,7 @@ description: >
   the user wants to create a new web page, landing page, dashboard,
   pricing page, about page, or any UI design. Also use when the user
   says "design a page", "create a screen", or "build a webpage".
-  Uses DESIGN.md if available for visual consistency.
+  Requires DESIGN.md for visual consistency — blocks generation if missing.
 ---
 
 Generate a screen from a description using the configured generator (Stitch or Claude Code).
@@ -18,7 +18,7 @@ Before sending any prompt to Stitch:
 3. For refinements: verify ONE change only (not compound changes)
 4. Reject vague requests ("make it better", "improve it") — ask for specifics
 5. Check quota before generating: read `.guardrc.json` to see current usage
-6. If DESIGN.md exists, reference it for visual consistency
+6. DESIGN.md is required — step 1 blocks generation if missing
 7. Flag generic terms ("modern", "clean", "professional") and suggest specific UI/UX vocabulary replacements (e.g., "asymmetric hero layout", "bento grid", "sticky nav with CTA")
 
 ## Instructions
@@ -43,7 +43,12 @@ Before sending any prompt to Stitch:
      - Save the choice to `.guardrc.json` by updating the `generator` field (create file with defaults if it does not exist).
      - Tell the user: "Saved generator preference to .guardrc.json. You can change it anytime by editing the file or telling me to switch."
 
-1. **Read DESIGN.md** if it exists at the project root. Use it as context for visual consistency.
+1. **Read DESIGN.md (REQUIRED)**:
+   - Read DESIGN.md from the project root.
+   - **IF DESIGN.md does NOT exist: STOP.** Do NOT create one inline. Do NOT proceed with generation.
+     - Tell the user: "No DESIGN.md found. A design system is required before generating screens. Run `/dg-design` to create one (or `/dg-discover` first if this is for a real business)."
+     - Do NOT offer to create DESIGN.md within this skill. The user MUST use `/dg-design` which has context isolation and discover checks.
+   - IF DESIGN.md exists: use it as context for visual consistency. Extract colors, fonts, spacing, and component patterns.
 
 2. **Guide the user** through building a good prompt using the zoom-out-zoom-in framework:
 
